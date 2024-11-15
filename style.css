@@ -1,7 +1,8 @@
 :root {
     --b: 2px;
 }
-.bg{
+
+.bg {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -10,51 +11,79 @@
     position: absolute;
     z-index: -1;
 }
-i{
+
+i {
     color: white;
 }
-body{
+
+body {
     background-color: #090909;
     font-family: Arial, sans-serif;
     margin: 0;
     overflow: hidden;
     padding: 0;
 }
-h1{
+
+h1 {
     color: white;
 }
-h1 span{
+
+h1 span {
     text-shadow: 1px 1px 50px #1077f49e;
     color: #1077f4;
 }
-.contenedor-div{
+
+.contenedor-icono {
     display: flex;
-    position: absolute;
-    top: 30px;
-    left: 10px;
+    margin: 20px;
     flex-direction: column;
     align-items: center;
 }
-.contenedor-div p{
+
+.contenedor-icono p {
     font-family: Silka Mono;
     color: white;
     font-size: 1em;
     margin: 0 0 0 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.fa-terminal:hover{
+
+.contenedor-iconos {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.fa-terminal {
+    background: black;
+}
+
+.fa-terminal:hover {
     transform: scale(1);
     transition: all .3s;
 }
-.fa-terminal{
+
+.fa-solid, .fa-regular {
     border-radius: 5px;
     padding: 10px;
-    background: black;
     cursor: pointer;
 }
 
+.icono {
+    background: #1077f4;
+}
+
+.prev-post {
+    position: absolute;
+    left: 10px;
+    color: white;
+}
+
 /* lo de los borders seguro se puede modular */
-.b-right-top{
+.b-right-top {
     position: absolute;
     top: 0;
     right: 0;
@@ -63,7 +92,8 @@ h1 span{
     background-color: white;
     cursor: ne-resize;
 }
-.b-left-top{
+
+.b-left-top {
     position: absolute;
     top: 0;
     left: 0;
@@ -72,7 +102,8 @@ h1 span{
     background-color: white;
     cursor: nw-resize;
 }
-.b-top{
+
+.b-top {
     position: absolute;
     top: 0;
     left: var(--b);
@@ -81,7 +112,8 @@ h1 span{
     background-color: rgb(161, 49, 49);
     cursor: n-resize;
 }
-.b-right{
+
+.b-right {
     position: absolute;
     top: var(--b);
     right: 0;
@@ -90,7 +122,8 @@ h1 span{
     background-color: white;
     cursor: e-resize;
 }
-.b-left{
+
+.b-left {
     position: absolute;
     top: var(--b);
     left: 0;
@@ -99,7 +132,8 @@ h1 span{
     background-color: white;
     cursor: w-resize;
 }
-.b-right-bottom{
+
+.b-right-bottom {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -108,7 +142,8 @@ h1 span{
     background-color: white;
     cursor: se-resize;
 }
-.b-left-bottom{
+
+.b-left-bottom {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -116,8 +151,9 @@ h1 span{
     height: var(--b);
     background-color: white;
     cursor: sw-resize;
-}   
-.b-bottom{
+}
+
+.b-bottom {
     position: absolute;
     bottom: 0;
     left: var(--b);
@@ -127,16 +163,19 @@ h1 span{
     cursor: s-resize;
 }
 /* FIN DE LOS BORDERS */
-.header_windows{
-    background-color: #393838;
+
+.header_windows {
+    background-color: hsl(223, 24%, 11%);
     color: white;
-    height: 10%;
+    min-height: 30px;
     width: 100%;
     cursor: grab;
     display: flex;
     align-items: center;
+    flex-shrink: 0; /* Evita que el header se encoja */
 }
-.close{
+
+.close {
     position: absolute;
     right: 0;
     cursor: pointer;
@@ -146,7 +185,7 @@ h1 span{
     margin-right: 10px;
 }
 
-button{
+button {
     background-color: #0f0f0f;
     color: white;
     border: white 1px solid;
@@ -157,37 +196,116 @@ button{
 }
 
 .window {
-    /* border: white 1px solid; */
-    width: 40vw;
+    border: #d3e6fc 1px solid;
+    width: 80vw;
+    height: 80vh;
     background-color: #000000;
-    height: 50vh;
     position: absolute;
-    top: 50%;
+    top: 10%;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Evita que el contenido se desborde */
 }
 
-.console{
+.console {
     overflow-y: scroll;
     width: 100%;
-    height: 90%;
+    height: 93%;
     font-size: .9em;
     font-family: Silka Mono;
     color: white;
     background-color: #0f0f0f;
 }
-#comand-container{
+
+#comand-container {
     padding: 10px;
 }
-.tiping-container{
-   display:flex;
-   flex-direction: row;
-   align-items: center;
+
+.tiping-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
-#line-command{
+
+#line-command {
     width: 100%;
 }
-#line-command:focus{
+
+#line-command:focus {
     outline: none;
 }
-#user{
+
+#user {
     color: rgb(0, 181, 30);
+}
+
+h2 {
+    color: #091a2d;
+    text-align: center;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.header-home {
+    background-color: #393838;
+    height: 4.5vh;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    position: relative;
+    flex-shrink: 0;
+}
+
+#ip {
+    color: #d3e6fc;
+    width: 30%;
+    max-width: 300px;
+    min-width: 150px;
+    border-radius: 10px;
+    background-color: #0f0f0f;
+    outline: none;
+    padding: 5px 10px;
+}
+
+.container-home {
+    height: 100%;
+    background-color: #d3d3d3;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.secction-home {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+    padding: 20px;
+}
+
+.container-data {
+    position: absolute;
+    width: 50vw;
+    bottom: 0;
+    height: 70vh;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+p {
+    max-width: 100%;
+    word-wrap: break-word;
 }

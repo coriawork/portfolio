@@ -83,15 +83,26 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     }
 
-    class console{
-        constructor(){
-            this.command_list = {'ls':()=>{this.ls()}};
-            this.html = document.createElement('div');
-            this.html.classList.add('console');
-            this.i_cache = 0;
-            this.command_cache = [];
-            this.results = []
-            this.html.innerHTML = `
+    class console {
+      constructor() {
+        this.command_list = {
+          ls: this.ls,
+          clear: () => {
+            this.clear();
+          },
+          cls: () => {
+            this.clear();
+          },
+          help: () => {
+            this.help();
+          },
+        };
+        this.html = document.createElement("div");
+        this.html.classList.add("console");
+        this.i_cache = 0;
+        this.command_cache = [];
+        this.results = [];
+        this.html.innerHTML = `
                     <div id="comand-container">
                         <div class='result'></div>
                         <span id="user">manuel@portfolio</span>
@@ -104,26 +115,28 @@ document.addEventListener('DOMContentLoaded', ()=>{
                             <div  id="line-command" contenteditable="true"></div>
                         </div>
                     </div>`;
-            this.line = this.html.querySelector('#line-command');
-            this.line.focus()
-            this.resutlHtml = this.html.querySelector('.result');
-            
+        this.line = this.html.querySelector("#line-command");
+        this.line.focus();
+        this.resutlHtml = this.html.querySelector(".result");
 
-            this.html.addEventListener('keydown',(e)=>{
-                if (e.key === 'Enter'){
-                    e.preventDefault();
-                    var command = this.line.innerText;
-                    this.execute(command);
-                    this.line.innerText = '';
-                    this.command_cache.push(command);                    
-                }
-                if (e.key === "ArrowUp"){
-                    e.preventDefault();
-                    this.line.textContent = this.command_cache[this.i_cache];
-                    this.i_cache = this.i_cache < this.command_cache.length ? this.i_cache + 1 : this.i_cache = 0;
-                }
-                //!TODO ARREGLAR
-               /*  if (e.key === "ArrowDown"){
+        this.html.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            var command = this.line.innerText;
+            this.execute(this.line.innerText);
+            this.line.innerText = "";
+            this.command_cache.push(command);
+          }
+          if (e.key === "ArrowUp") {
+            e.preventDefault();
+            this.line.textContent = this.command_cache[this.i_cache];
+            this.i_cache =
+              this.i_cache < this.command_cache.length
+                ? this.i_cache + 1
+                : (this.i_cache = 0);
+          }
+          //!TODO ARREGLAR
+          /*  if (e.key === "ArrowDown"){
                     e.preventDefault();
                     if(this.i_cache == 0){
                         this.i_cache = this.command_cache.length - 1;   
@@ -134,43 +147,62 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     this.line.textContent = this.command_cache[this.i_cache];
                     c(this.i_cache,this.cache_command)
                 } */
-            });
-           
-        } 
-        ls(){
-            this.render('<div id="ls"></div>')
-            let contain = document.querySelector('#ls')
-            let text = ['hola','mundo','como','estas','hoy','?']
-            text.forEach(t=>{
-                let s = document.createElement('div')
-                s.textContent = t;
-                contain.appendChild(s);
-            })
-            
+        });
+      }
+
+      render(result, command) {
+        if (result != undefined) {
+          c(command);
+          this.resutlHtml.innerHTML =
+            this.resutlHtml.innerHTML +
+            `<span id="user">manuel@portfolio</span>
+                <span style="color:rgb(255, 208, 0); margin-left: 10px;">
+                    ~
+                </span>
+                <br><p style="margin:5px 0px 5px 0px"><span style='margin-right:5px'>$` +
+            command +
+            `</span>` +
+            result +
+            `</p>`;
         }
-        execute(command){
-            c(command)
-            if(this.command_list[command]){
-                this.render(this.command_list[command](), command);
-            }
-            else{
-                this.render('<div style="color:rgb(183, 42, 42)">command not found<div>',command);
-            }
+      }
+      execute(command) {
+        if (this.command_list[command]) {
+          let result = this.command_list[command]();
+          this.render(result, command);
+        } else {
+          this.render(
+            '<div style="color:rgb(183, 42, 42)">command not found<div>',
+            command
+          );
         }
-        render(result,command){
-            if(result != undefined){
-                c(command)
-                this.resutlHtml.innerHTML = this.resutlHtml.innerHTML +
-                  `<span id="user">manuel@portfolio</span>
-                            <span style="color:rgb(255, 208, 0); margin-left: 10px;">
-                                ~
-                            </span>
-                            <br><p style="margin:5px 0px 5px 0px"><span style='margin-right:5px'>$`+command+`</span>` +
-                  result +
-                  `</p>`;
-            }
-        }
+      }
+      ls() {
+        this.render('<div id="ls"></div>');
+        let contain = document.querySelector("#ls");
+        let text = ["hola", "mundo", "como", "estas", "hoy", "?"];
+        text.forEach((t) => {
+          let s = document.createElement("div");
+          s.textContent = t;
+          contain.appendChild(s);
+        });
+      }
+      help() {
+        this.render('<div id="help"></div>');
+        let contain = document.querySelector("#help");
+        let text = ["lista de comandos:", "ls", "skills"];
+        text.forEach((t) => {
+          let s = document.createElement("div");
+          s.textContent = t;
+          contain.appendChild(s);
+        });
+      }
+
+      clear() {
+        this.resutlHtml.innerHTML = "";
+      }
     }
+    
 
     const init_iconos= ()=>{
         let iconos = document.querySelectorAll('.icono');
