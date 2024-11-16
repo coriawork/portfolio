@@ -298,9 +298,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const iconos_dic = {
       console: () => new window().insert_content(new console().html),
       home: () => new_wiki(),
-      warning: () => new_warning()
+      warning: () => new_warning(),
+      proyectos: () => proyectos(),
     };    
-    
+
     const init_iconos= ()=>{
         let iconos = document.querySelectorAll('.icono');
         iconos.forEach(icono=>{
