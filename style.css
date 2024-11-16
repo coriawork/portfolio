@@ -196,7 +196,7 @@ button {
 
 .window {
     border: #d3e6fc 1px solid;
-    width: 80vw;
+    width: 50vw;
     height: 80vh;
     background-color: #000000;
     position: absolute;
@@ -456,3 +456,26 @@ input{
 }
 
 /* ! FIN WIKI CLONE */
+
+/* ! Comienza el warning */
+
+.container-warning{
+    background-color: rgb(248, 147, 32);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+}
+.container-warning .fa-warning{
+    font-size: 5em;
+    color: #ac0000;
+    text-shadow: 2px 2px 10px #810606;
+}
+.container-warning p {
+    font-size: 2em;
+    margin: 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
