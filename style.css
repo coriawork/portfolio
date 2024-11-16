@@ -167,12 +167,11 @@ h1 span {
 .header_windows {
     background-color: hsl(223, 24%, 11%);
     color: white;
-    min-height: 30px;
+    height: 5%;
     width: 100%;
     cursor: grab;
     display: flex;
     align-items: center;
-    flex-shrink: 0; /* Evita que el header se encoja */
 }
 
 .close {
@@ -184,7 +183,7 @@ h1 span {
     height: 20px;
     margin-right: 10px;
 }
-
+/* 
 button {
     background-color: #0f0f0f;
     color: white;
@@ -193,7 +192,7 @@ button {
     margin: 10px;
     padding: 5px;
     border-radius: 5px;
-}
+} */
 
 .window {
     border: #d3e6fc 1px solid;
@@ -205,7 +204,6 @@ button {
     left: 10%;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Evita que el contenido se desborde */
 }
 
 .console {
@@ -240,32 +238,31 @@ button {
     color: rgb(0, 181, 30);
 }
 
-h2 {
+/* h2 {
     color: #091a2d;
     text-align: center;
     margin: 0;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+} */
 
+
+/* ! ARRANCA EL CLONE WIKI */
 .header-home {
     background-color: #393838;
-    height: 4.5vh;
     min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
     position: relative;
     flex-shrink: 0;
 }
 
 #ip {
     color: #d3e6fc;
-    width: 30%;
-    max-width: 300px;
-    min-width: 150px;
+    width: 50%;
     border-radius: 10px;
+    height: 50%;
+    display: flex;
+    align-items: center;
     background-color: #0f0f0f;
     outline: none;
     padding: 5px 10px;
@@ -273,7 +270,7 @@ h2 {
 
 .container-home {
     height: 100%;
-    background-color: #d3d3d3;
+    background-color: white;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -309,3 +306,153 @@ p {
     max-width: 100%;
     word-wrap: break-word;
 }
+.fa-bars{
+    color: black;
+}
+.header-content{
+    display: flex;
+    align-items: center;
+}
+.img-block{
+    margin-left: 5px;
+    align-items: center;
+    display: flex;
+}
+.img-text{
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+#word{
+    width:20%;
+}
+#text1{
+    height: 40%;
+}
+input{
+    all: unset;
+    width: 100%;
+}
+.fa-magnifying-glass{
+    color: #7c7c7c;
+    cursor:default;
+}
+.navigate{
+    border: 1px solid #494949;
+    display: flex;
+    width: 40%;
+}
+.navigate-button{
+    all:unset;
+    cursor: pointer;
+    border-left: 1px solid #494949;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+.article-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.description{
+    width: 50%;   
+    margin-right: 20px; 
+}
+.description p{
+    line-height: 1.9;
+}
+
+
+.description h1{
+    color: #090909;
+    font-size: 2em;
+    display: inline;
+    font-weight: 100;
+    font-family: 'Times New Roman', Times, serif;
+}
+.article-content header{
+    border-bottom: solid 1px #494949;
+}
+.article-content i{
+    color: #090909;
+}
+#profile{
+    height: 40%;
+}
+.information{
+   border: 1px solid #8c8c8c;
+    width: 25%;
+    background-color: #f1f1f1;  
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    height: auto; /* Se ajusta automáticamente al contenido */
+
+}
+.information h2, .information h3{
+    height: 50px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: rgb(125, 155, 174);
+
+}
+.information h3{
+    height: 30px;
+}
+.information img{
+     width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+    object-position: center; 
+    max-height: 300px; 
+    margin: 10px 0;
+}
+.information section p{
+    display: inline;
+}
+.information section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.information section div {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    width: 100%;
+    align-items: baseline;
+    border-bottom: 1px solid #eaecf0;
+    padding: 3px 0;
+}
+
+.information section div p {
+    margin: 0;
+    padding: 2px 0;
+}
+
+.information section div p:first-child {
+    /* Columna de etiquetas */
+    color: #54595d;
+    font-weight: normal;
+    padding-right: 10px;
+    text-align: left;
+    /* Alineación a la izquierda */
+}
+
+.information section div p:last-child {
+    /* Columna de valores */
+    color: #202122;
+    text-align: right;
+    /* Alineación a la derecha */
+    padding-right: 10px;
+    /* Espacio al final */
+}
+
+/* ! FIN WIKI CLONE */

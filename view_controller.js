@@ -202,14 +202,93 @@ document.addEventListener('DOMContentLoaded', ()=>{
         this.resutlHtml.innerHTML = "";
       }
     }
-    
 
+    let wiki_div = document.createElement('div'); wiki_div.classList = 'container-home'
+    const wiki_component = `
+            <header class="header-home">
+                <div class="prev-post">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+                <i class="fa-regular fa-bookmark"></i>
+                <div id="ip" contenteditable="true">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    127.0.0.1:8000
+                </div>
+            </header>
+            <section class="secction-home">
+                <div class="header-content">
+                    <i class="fa-solid fa-bars"></i>
+                    <a class="img-block" href="www.wikipedia.com">
+                        <img id="word" src="https://es.wikipedia.org/static/images/icons/wikipedia.png" alt="">
+                        <div class="img-text">
+                            <img id="text1" src="https://es.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en.svg" alt="">
+                            <img id="text1" src="https://es.wikipedia.org/static/images/mobile/copyright/wikipedia-tagline-es.svg" alt="">
+                        </div>
+                    </a>
+                    <div class="navigate">
+                        <i class="fa-sharp-duotone fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Buscar en wikipedia">
+                        <button class="navigate-button">Buscar</button>
+                    </div>
+                </div>
+                <article class="article-content">
+                    <section class="description">
+                        <header>
+                            <h1>Manuel Coria</h1>
+                        </header>
+                        <p>
+                            Soy desarrollador full-stack con más de 7 años de experiencia, combinando aprendizaje autodidacta con formación académica. Mi pasión por la tecnología comenzó en la escuela secundaria y desde entonces he trabajado en diversos proyectos, aplicando lenguajes de programación, frameworks modernos y metodologías ágiles. Actualmente, estudio la Licenciatura en Sistemas en la Universidad Nacional de La Plata, donde perfecciono mis habilidades técnicas y de resolución de problemas.
+                            <br>
+                            Además de desarrollar software, disfruto explorar nuevas tecnologías y compartir conocimientos. Mi meta es seguir creciendo como profesional, participando en proyectos innovadores y desafiantes.
+                            <br>
+                            <b>Si quieres saber más sobre mi trabajo, te invito a explorar los proyectos destacados y habilidades en este portafolio.
+                            </b><br>
+
+                        </p>
+                    </section>
+                    <section class="information">
+                        <h2>Manuel Coria</h2>
+                        <img id="profile" src="profile.jpg" alt="">
+                        <h3>Informacion personal</h3>
+                        <section>
+                            <div>
+                                <p><b>Edad </b></p><p>22 años</p>
+                            </div> 
+                            <div>
+                                <p><b>Nacionalidad </b></p><p>Argentina</p>
+                            </div> 
+                            <div>
+                                <p><b>Idiomas </b></p><p>Español, Ingles</p>
+                            </div> 
+                        </section>
+                        <h3>Estudios</h3>
+                        <section>
+                            <div>
+                                <p><b>Universidad </b></p><p><a href="">Universidad Nacional de La Plata</a></p>
+                            </div> 
+                            <div>
+                                <p><b>Carreras </b></p><p> Liceniatura en sistemas</p>
+                            </div> 
+                            <div>
+                                <p><b>Actualmente </b></p><p>3er año (activo) </p>
+                            </div> 
+                        </section>
+                    </section>
+                </article>
+            </section>
+`;
+    wiki_div.innerHTML = wiki_component    
+
+    const iconos_dic = {
+      console: () => new window().insert_content(new console().html),
+      home: () => new window().insert_content(wiki_div)
+    };    
     const init_iconos= ()=>{
         let iconos = document.querySelectorAll('.icono');
         iconos.forEach(icono=>{
-            icono.addEventListener('click',()=>{
-                let a = new window();
-                a.insert_content(new console().html);
+            icono.addEventListener('click',(e)=>{
+              iconos_dic[e.target.id]();
             })
         })
     }
