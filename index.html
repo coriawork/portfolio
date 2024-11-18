@@ -23,7 +23,7 @@
             <p>Sobre mi</p>
         </div>
         <div class="contenedor-icono">
-            <i id="warning" class="icono fa-solid fa-folder-open"></i>
+            <i id="proyectos" class="icono fa-solid fa-folder-open"></i>
             <p >Proyectos</p>
         </div>
         <div class="contenedor-icono">
@@ -35,13 +35,17 @@
             <p >Contactame</p>
         </div>
         <div class="contenedor-icono" >
-            <i  id="console" class="icono fa-solid fa-terminal" style="background-color: black;"></i>
+            <i id="console" class="icono fa-solid fa-terminal" style="background-color: black;"></i>
             <p >Terminal</p>
         </div>
         <div class="contenedor-icono" >
+           <i id='warning'class="icono fa-solid fa-gamepad"></i>
+            <p >games </p>
+        </div>
+        <!-- <div class="contenedor-icono" >
            <i id='warning'class="icono fa-solid fa-comment"></i>
             <p >chat-bot </p>
-        </div>
+        </div> -->
     </div>
 
 
@@ -127,18 +131,52 @@
         </div>
         
     </div> -->
-   <!--  <div class="window" style="right: 20%; top: 10%;">
+   
+  <!--   <div class="window" style="right: 20%; top: 10%;">
         <header class="header_windows">
             <div class="close">x</div>
         </header>
         <div class="container-proyecto">
+            <div class="bg">
+                <canvas id="matrixCanvas"></canvas>
+            </div>
+            <div class="title">Proyectos</div>
+            <div class="tuto">
+                <p>Usa las flechas para interactuar</p>
+                <div class="arrows">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
+            </div>
             <div class="container-folder">
-                <i class="fa-solid fa-folder"></i>
-                <p>TITLE</p>
+                <div id="" class="proyect">
+                    Titulo1
+                </div>
+                <div id="" class="proyect">
+                    Titulo2
+                </div>
+                <div id="" class="proyect">
+                    Titulo3
+                </div>
+                <div id="" class="proyect">
+                    Titulo4
+                </div>
+                <div id="" class="proyect">
+                    Titulo5
+                </div>
             </div>
         </div>
         
     </div>  -->
+    <div class="window" style="right: 20%; top: 10%;">
+        <header class="header_windows">
+            <div class="close">x</div>
+        </header>
+        <div class="container-game">
+            <canvas id="game"></canvas>
+        </div>
+        
+    </div> 
 </body>
 
 <script type="module" src="view_controller.js"></script>

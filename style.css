@@ -38,6 +38,7 @@ h1 span {
     margin: 20px;
     flex-direction: column;
     align-items: center;
+   
 }
 
 .contenedor-icono p {
@@ -55,6 +56,8 @@ h1 span {
     width: min-content;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
 }
 
 .fa-terminal {
@@ -196,7 +199,7 @@ button {
 
 .window {
     border: #d3e6fc 1px solid;
-    width: 50vw;
+    width: 60vw;
     height: 80vh;
     background-color: #000000;
     position: absolute;
@@ -204,6 +207,7 @@ button {
     left: 10%;
     display: flex;
     flex-direction: column;
+    z-index: 0;
 }
 
 .console {
@@ -415,6 +419,7 @@ input{
 }
 .information section p{
     display: inline;
+    font-size: .7em;
 }
 .information section {
     display: flex;
@@ -485,14 +490,93 @@ input{
 
 .container-proyecto{
     height: 100%;
-    background-color: #2c2c2c;
+    width: 100%;
+    color: rgb(255, 255, 255);
 }
+
 .container-folder{
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
+
 .container-proyecto .fa-folder{
     color: orange;
-    font-size: 2em;
+    font-size: 4em;
 }
+
+.container-folder p {
+    margin: 0;
+    color: white;
+}
+
+.container-proyecto .title{
+    text-align: center;
+    margin-top: 20px;
+}
+.proyect{
+    cursor: pointer;
+    padding: 20px;
+}
+
+.bg-proyecto{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: -1;
+}
+
+#matrixCanvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 95%;
+    opacity: 0.1;
+}
+.tuto{
+    font-size: .8em;
+    position: absolute;
+    right:20px;
+    top: 7%;
+}
+.tuto .fa-solid{
+    color: white;
+}
+.arrows .fa-arrow-up{
+    position: absolute;
+    padding:0;
+    display: flex;
+    right: 0px;
+    cursor: auto;
+    left: 0px;
+    justify-content: center;
+}
+.arrows .fa-arrow-down{
+    position: absolute;
+    padding:0;
+    display: flex;
+    right: 0px;
+    cursor: auto;
+    left: 0px;
+    top: 55px;
+    justify-content: center;
+}
+.container-folder .active{
+    color: rgb(12, 238, 12);
+}
+/*!arranca el jueog  */
+
+.container-game{
+    height: 100%;
+    width: 100%;
+}
+#game{
+    width: 100%;
+    height: 100%;
+}
+
+/* !Fin del juegi */
