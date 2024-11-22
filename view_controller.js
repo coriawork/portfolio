@@ -105,16 +105,13 @@ class proyecto {
 	} 
 	
 }
-class game{
+class Game{
 	constructor(){
-		/* html = document.createElement('div');
-		html.classList = 'container-game';
-		html.innerHTML = `
-				<canvas id="gameCanvas"></canvas>
-		`;*/
-		this.html = document.querySelector('.container-game');
-		this.canvas = document.querySelector('#game');
-		this.initGame()
+		this.html = document.createElement('div');
+		this.html.classList = 'container-game';
+		this.canvas = document.createElement('canvas')
+		this.canvas.id = "gameCanvas";
+		this.html.appendChild(this.canvas);
 	}
 
 	initGame(){
@@ -209,65 +206,76 @@ class game{
 			ctx.fillStyle = 'black';
 			ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-			ctx.fillStyle = 'white';
+			ctx.fillStyle = 'red';
 			ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
+			ctx.fillStyle = 'blue';
 			ctx.fillRect(this.canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
+			ctx.fillStyle = 'white';
 			ctx.fillRect(ballX - ballSize/2, ballY - ballSize/2, ballSize, ballSize);
 
 			// Draw score
 			ctx.font = '24px Arial';
 			ctx.fillText(leftScore, 100, 50);
 			ctx.fillText(rightScore, this.canvas.width - 100, 50);
-
-			//reset button
-			// Draw reset button
-			ctx.fillStyle = 'white';
-			ctx.fillRect(this.canvas.width/2 - 30, 10, 60, 30);
-			ctx.fillStyle = 'black';
-			ctx.font = '16px Arial';
-			ctx.fillText('Reset', this.canvas.width/2 - 20, 30);
-
-			// Check for click on reset button
-			this.canvas.addEventListener('click', (e) => {
-				const rect = this.canvas.getBoundingClientRect();
-				const x = e.clientX - rect.left;
-				const y = e.clientY - rect.top;
-				
-				if(x > this.canvas.width/2 - 30 && x < this.canvas.width/2 + 30 && 
-					 y > 10 && y < 40) {
-					leftScore = 0;
-					rightScore = 0;
-					ballX = this.canvas.width/2;
-					ballY = this.canvas.height/2;
-				}
-			});
-
+		
 			requestAnimationFrame(gameLoop);
+			
 		}
-		
-		
+		let boton = document.createElement("button");
+		boton.textContent = "reset";
+		boton.classList = "reset";
+		boton.addEventListener("click", () => {
+			leftScore = 0;
+			rightScore = 0;
+		});
+		this.html.appendChild(boton);
+
 	}
 
 }
+
+const windows = {}
+var focused = undefined;
 document.addEventListener('DOMContentLoaded', ()=>{
 		const body = document.querySelector('body')
+
+		const remover = (obj)=>{
+			delete windows[obj.id]
+			obj.remove()
+			obj = null
+
+			c(windows)
+		}
 		
 		class window {
 				constructor(){
-						this.html;
-						this.x;
-						this.y;
-						this.width;
-						this.height;
-						this.cursor = {x:0, y:0};
-						this.interacting = false;
-						this.closeButton
-						this.header;
-						this.init();
-						this.init_events();
-						this.html.tabIndex = 0;
-						this.html.click()
-						
+					this.html;
+					this.x;
+					this.y;
+					this.width;
+					this.height;
+					this.cursor = {x:0, y:0};
+					this.interacting = false;
+					this.closeButton
+					this.header;
+					this.z_index = 0;
+					this.init();
+					this.init_events();
+					this.html.tabIndex = 0;
+					this.html.click()
+
+					//manejo de keys
+					let keys = Object.keys(windows);
+					keys[0] === undefined ? this.id = 0 : this.id = Number(keys[keys.length - 1]) + 1;
+					windows[this.id] = this
+
+					if(focused != undefined){
+						this.setZindex(focused.z_index + 1)
+					}
+					else{	
+						this.setZindex(1)
+					}
+					focused = this;
 				}
 
 
@@ -279,11 +287,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
 						body.appendChild(this.html);
 						this.html.style.right = "20%";
 						this.html.style.top = "10%";
+						
 
 						this.header = this.html.querySelector(".header_windows");
 						//close button
 						this.closeButton = this.html.querySelector(".close");
-						this.closeButton.addEventListener("click", () => this.html.remove());
+						this.closeButton.addEventListener("click", () => remover(this));
 						/* 
 						//borders
 						let border = document.createElement("div");
@@ -300,7 +309,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 						this.html.appendChild(border); */
 					
 				}
-
+				setZindex(num){
+					this.z_index = num;
+					this.html.style.zIndex = this.z_index;
+				}
 				// defino todos los eventos que se pueden hacer en la ventana
 				init_events(){
 						/* this.html.querySelector('.borders').addEventListener('mousedown',(e)=>this.resize(e));
@@ -308,7 +320,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
 						this.header.addEventListener('mousedown',(e)=>{this.click(e)});
 						document.addEventListener('mousemove',(e)=>this.move(e));
 						document.addEventListener('mouseup',()=>this.interacting = false);
-						this.html.addEventListener("keydown", (e) => e.key === "Escape" && this.html.remove());          
+						this.html.addEventListener("keydown", (e) => e.key === "Escape" && remover(this));         
+						this.html.addEventListener('mousedown',()=>{
+							if(focused != undefined && focused != this){
+								c(focused)
+								let aux = focused.z_index;
+								focused.setZindex(this.z_index);
+								this.setZindex(aux);
+								focused = this
+							}
+						}) 
 				}
 
 				click(e){
@@ -328,6 +349,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
 				insert_content(content){
 						this.html.appendChild(content);
 				}    
+				remove(){
+					this.html.remove()
+				}
 
 		}
 
@@ -487,7 +511,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 															<h1>Manuel Coria</h1>
 													</header>
 													<p>
-															Soy desarrollador full-stack con más de 7 años de experiencia, combinando aprendizaje autodidacta con formación académica. Mi pasión por la tecnología comenzó en la escuela secundaria y desde entonces he trabajado en diversos proyectos, aplicando lenguajes de programación, frameworks modernos y metodologías ágiles. Actualmente, estudio la Licenciatura en Sistemas en la Universidad Nacional de La Plata, donde perfecciono mis habilidades técnicas y de resolución de problemas.
+															Soy desarrollador full-stack con 7 años de experiencia, combinando aprendizaje autodidacta con formación académica. Mi pasión por la tecnología comenzó en la escuela secundaria y desde entonces he trabajado en diversos proyectos, aplicando lenguajes de programación, frameworks modernos y metodologías ágiles. Actualmente, estudio la Licenciatura en Sistemas en la Universidad Nacional de La Plata, donde perfecciono mis habilidades técnicas y de resolución de problemas.
 															<br>
 															Además de desarrollar software, disfruto explorar nuevas tecnologías y compartir conocimientos. Mi meta es seguir creciendo como profesional, participando en proyectos innovadores y desafiantes.
 															<br>
@@ -543,12 +567,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
 		const new_proyectos = ()=>{
 			new window().insert_content(new proyecto().html)
 		}
+		const new_game = ()=>{
+			let game = new Game();
+			new window().insert_content(game.html)
+			game.initGame()
 
+		}
 
 		const iconos_dic = {
 			console: () => new window().insert_content(new console().html),
 			home: () => new_wiki(),
 			warning: () => new_warning(),
+			game: () => new_game(),
 			proyectos: () => new_proyectos(),
 		};    
 
@@ -562,5 +592,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
 		}
 
 		init_iconos();    
-		new game()
 });
