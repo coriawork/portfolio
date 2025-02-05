@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 															<h1>Manuel Coria</h1>
 													</header>
 													<p>
-															Soy desarrollador full-stack con 7 años de experiencia, combinando aprendizaje autodidacta con formación académica. Mi pasión por la tecnología comenzó en la escuela secundaria y desde entonces he trabajado en diversos proyectos, aplicando lenguajes de programación, frameworks modernos y metodologías ágiles. Actualmente, estudio la Licenciatura en Sistemas en la Universidad Nacional de La Plata, donde perfecciono mis habilidades técnicas y de resolución de problemas.
+															Soy desarrollador full-stack con 7 años de aprendizaje, combinando estudio autodidacta con formación académica. Mi pasión por la tecnología comenzó en la escuela secundaria y desde entonces he trabajado en diversos proyectos, aplicando lenguajes de programación, frameworks modernos y metodologías ágiles. Actualmente, estudio la Licenciatura en Sistemas en la Universidad Nacional de La Plata, donde perfecciono mis habilidades técnicas y de resolución de problemas.
 															<br>
 															Además de desarrollar software, disfruto explorar nuevas tecnologías y compartir conocimientos. Mi meta es seguir creciendo como profesional, participando en proyectos innovadores y desafiantes.
 															<br>
@@ -569,4 +569,3 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 		init_iconos();    
 });
-
