@@ -1,6 +1,10 @@
 //!todelete
 const c = (...e)=>console.log(...e);
 
+const $ = (e)=>document.querySelector(e);
+const $$ = (e) => document.querySelectorAll(e);
+
+
 //? position window popup controller
 function lluvia(canvas) {
 	const context = canvas.getContext("2d");
@@ -41,68 +45,33 @@ function lluvia(canvas) {
 	setInterval(draw, 50);
 }
 class proyecto {
-	constructor() {
+	constructor(window) {
 		this.html = document.createElement("div");
-		this.html.classList = "container-proyecto";
-		this.canvas = document.createElement("canvas");
-		this.canvas.id = "matrixCanvas";
-		this.html.innerHTML = `
-						<div class="bg-proyecto">
-						</div>
-						<div class="title">Proyectos</div>
-						
-						<div class="container-folder">
-								<div id="" class="proyect">
-										Titulo1
-								</div>
-								<div id="" class="proyect">
-										Titulo2
-								</div>
-								<div id="" class="proyect">
-										Titulo3
-								</div>
-								<div id="" class="proyect">
-										Titulo4
-								</div>
-								<div id="" class="proyect">
-										Titulo5
-								</div>
-
-						</div>`;
-		this.html.querySelector(".bg-proyecto").appendChild(this.canvas);
-		lluvia(this.canvas);
-		this.proyectos_html = this.html.querySelectorAll(".proyect");
 		this.i = 0;
-		this.proyectos_html[this.i].classList.add("active");
-		this.proyectos_html[this.i].innerHTML = this.proyectos_html[this.i].innerHTML + "◄" 
-		this.proyectos_html.forEach((proyecto) => {
-			proyecto.addEventListener("mouseover", () => {
-				this.proyectos_html[this.i].classList.remove("active");
-				this.proyectos_html[this.i].innerHTML = this.proyectos_html[this.i].innerHTML.replace('◄','')
-				this.i = [...this.proyectos_html].indexOf(proyecto);
-				this.proyectos_html[this.i].classList.add("active");
-				this.proyectos_html[this.i].innerHTML = this.proyectos_html[this.i].innerHTML + "◄"         
-			});
-		});
-		this.html.tabIndex = 0;
-		this.html.focus();  
-		this.html.addEventListener("keydown", (e) => {
-			if (e.key === "ArrowDown") {
-				this.proyectos_html[this.i].classList.remove("active");
-				this.proyectos_html[this.i].innerHTML = this.proyectos_html[this.i].innerHTML.replace('◄','')
-				this.i = this.i < this.proyectos_html.length - 1 ? this.i + 1 : 0;
-				this.proyectos_html[this.i].classList.add("active");
-				this.proyectos_html[this.i].innerHTML = this.proyectos_html[this.i].innerHTML + "◄" 
-			}
-			if (e.key === "ArrowUp") {
-				this.proyectos_html[this.i].classList.remove("active");
-				this.proyectos_html[this.i].innerHTML = this.proyectos_html[this.i].innerHTML.replace('◄','')
-				this.i = this.i > 0 ? this.i - 1 : this.proyectos_html.length - 1;
-				this.proyectos_html[this.i].classList.add("active");
-				this.proyectos_html[this.i].innerHTML = this.proyectos_html[this.i].innerHTML + "◄" 
-			}
-		});
-	} 
+		this.init()
+		this.window = window;
+	}
+
+	init() {
+		this.html.classList = "container-proyectos";
+		this.html.innerHTML = `
+		<div class="proyectos-contenedor-iconos">
+			<div class="contenedor-icono">
+				<i id="warning" class="icono fa-solid fa-folder"></i>
+				<p >Contactame</p>
+			</div>
+		</div>
+		`;
+		this.iconos()
+	}
+	iconos(){
+		let iconos = this.html.querySelectorAll(".contenedor-icono");
+		iconos.forEach(icono=>{
+			icono.addEventListener('click',(e)=>{
+				alert('a')
+			})
+		})
+	}
 	
 }
 class Game{
@@ -237,7 +206,13 @@ class Game{
 const windows = {}
 var focused = undefined;
 document.addEventListener('DOMContentLoaded', ()=>{
-		const body = document.querySelector('body')
+		const body = $('body')
+
+		const closeToast = () => {
+			$('.toast').remove()
+		}
+
+		$('#close-toast').addEventListener('click', () => closeToast());
 
 		const remover = (obj)=>{
 			delete windows[obj.id]
@@ -451,7 +426,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 			}
 			ls() {
 				this.render('<div id="ls"></div>');
-				let contain = document.querySelector("#ls");
+				let contain = $("#ls");
 				let text = ["hola", "mundo", "como", "estas", "hoy", "?"];
 				text.forEach((t) => {
 					let s = document.createElement("div");
@@ -461,7 +436,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 			}
 			help() {
 				this.render('<div id="help"></div>');
-				let contain = document.querySelector("#help");
+				let contain = $("#help");
 				let text = ["lista de comandos:", "ls", "skills"];
 				text.forEach((t) => {
 					let s = document.createElement("div");
@@ -565,14 +540,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
 			new window().insert_content(warning_div)
 		}
 		const new_proyectos = ()=>{
-			new window().insert_content(new proyecto().html)
+			let win = new window();
+			win.insert_content(win)
 		}
-		const new_game = ()=>{
+	/* 	const new_game = ()=>{
 			let game = new Game();
 			new window().insert_content(game.html)
 			game.initGame()
 
-		}
+		} */
 
 		const iconos_dic = {
 			console: () => new window().insert_content(new console().html),
@@ -583,7 +559,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 		};    
 
 		const init_iconos= ()=>{
-				let iconos = document.querySelectorAll('.icono');
+				let iconos = $$('.icono');
 				iconos.forEach(icono=>{
 						icono.addEventListener('click',(e)=>{
 							iconos_dic[e.target.id]();
@@ -593,3 +569,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 		init_iconos();    
 });
+
