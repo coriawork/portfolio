@@ -1,3 +1,41 @@
+// Cursor personalizado
+/* document.addEventListener('mousemove', (e) => {
+    const cursor = document.querySelector('.cursor');
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+}); */
+
+// Efecto hover
+/* document.addEventListener('mousedown', (e) => {
+	const cursor = document.querySelector('.cursor');
+	cursor.classList.add('selecting');
+});
+
+document.addEventListener('mouseup', (e) => {
+	const cursor = document.querySelector('.cursor');
+	cursor.classList.remove('selecting');
+});
+document.addEventListener('mouseover', (e) => {
+    const cursor = document.querySelector('.cursor');
+    if (
+      e.target.tagName === "BUTTON" ||
+      e.target.tagName == "I" ||
+      e.target.classList.contains("close") ||
+      e.target.tagName == "A" ||
+      e.target.classList.contains("header_windows")
+    ) {
+      cursor.style.width = "30px";
+      cursor.style.height = "30px";
+    }
+
+}); */
+/* 
+document.addEventListener('mouseout', (e) => {
+    const cursor = document.querySelector('.cursor');
+    cursor.style.width = '20px';
+    cursor.style.height = '20px';
+}); */
+
 //!todelete
 const c = (...e)=>console.log(...e);
 
@@ -6,7 +44,7 @@ const $$ = (e) => document.querySelectorAll(e);
 
 
 //? position window popup controller
-function lluvia(canvas) {
+/* function lluvia(canvas) {
 	const context = canvas.getContext("2d");
 
 	canvas.width = window.innerWidth;
@@ -44,37 +82,9 @@ function lluvia(canvas) {
 
 	setInterval(draw, 50);
 }
-class proyecto {
-	constructor(window) {
-		this.html = document.createElement("div");
-		this.i = 0;
-		this.init()
-		this.window = window;
-	}
+ */
 
-	init() {
-		this.html.classList = "container-proyectos";
-		this.html.innerHTML = `
-		<div class="proyectos-contenedor-iconos">
-			<div class="contenedor-icono">
-				<i id="warning" class="icono fa-solid fa-folder"></i>
-				<p >Contactame</p>
-			</div>
-		</div>
-		`;
-		this.iconos()
-	}
-	iconos(){
-		let iconos = this.html.querySelectorAll(".contenedor-icono");
-		iconos.forEach(icono=>{
-			icono.addEventListener('click',(e)=>{
-				alert('a')
-			})
-		})
-	}
-	
-}
-class Game{
+/* class Game{
 	constructor(){
 		this.html = document.createElement('div');
 		this.html.classList = 'container-game';
@@ -202,6 +212,7 @@ class Game{
 	}
 
 }
+ */
 
 const windows = {}
 var focused = undefined;
@@ -221,6 +232,100 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 			c(windows)
 		}
+		const proyects = [
+			{
+				title:'	Proyecto 1',
+				imgUrl:'https://kzmgnyep8j3bkwx6vbs8.lite.vusercontent.net/placeholder.svg?height=100&width=200',
+				desc:'descripcion',
+				techs:['html5','css3','js','react']
+			},
+			{
+				title:'	Proyecto 1',
+				imgUrl:'https://kzmgnyep8j3bkwx6vbs8.lite.vusercontent.net/placeholder.svg?height=100&width=200',
+				desc:'descripcion',
+				techs:['html5','css3','js','react']
+			}
+		]
+		class proyect{
+			constructor(){
+				this.html = document.createElement('div');
+				this.html.classList = 'container-home';
+				this.init()
+				this.container_card = this.html.querySelector(".container-container-card-proyecto");
+				c(this.container_card)
+				this.createCards();
+
+			}	
+			init(){
+				this.html.innerHTML = `
+					<header class="header-home">
+						<div class="prev-post">
+								<i class="fa-solid fa-arrow-left"></i>
+								<i class="fa-solid fa-arrow-right"></i>
+						</div>
+						<i class="fa-regular fa-bookmark"></i>
+						<div id="ip" contenteditable="true">
+								<i class="fa-solid fa-circle-exclamation"></i>
+								PROYECTOS
+						</div>
+					</header>
+					<div class="container-container-card-proyecto">
+					</div>
+				`;
+      		  	
+				
+			}
+			createPopup = (e, text,bot) => {
+				const popup = document.createElement('div');
+				popup.classList.add('popup');
+				popup.innerText = text;
+				document.body.insertBefore(popup, document.body.firstChild);
+
+				const movePopup = (e) => {
+					popup.style.left = e.clientX  + 'px';
+					popup.style.top = e.clientY - 50 + 'px';
+				};
+
+				document.addEventListener('mousemove', movePopup);
+
+				bot.addEventListener('mouseout', () => {
+					document.body.removeChild(popup);
+					document.removeEventListener('mousemove', movePopup);
+				});
+			};
+			createCards(){
+				let aux = ''
+				proyects.forEach(data => {
+					aux += `<div class="container-card">
+							<img class="img-card" src="${data.imgUrl}" alt="">
+							<div class="card">
+								<div class="card-header">
+									<h3>${data.title}</h3>
+								</div>
+								<div>
+									<p>${data.desc}</p>
+								</div>
+								<div class="card-footer">
+									<button id="popout"><i class="fa-solid fa-up-right-from-square"></i></button>
+									<div id="techs">
+										${data.techs
+											.map((tech) => `<i class='fa-brands fa-${tech}'></i>`)
+											.join("")
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					`
+				});
+				this.container_card.innerHTML = aux;
+				this.container_card.querySelectorAll('#popout').forEach(popup => {
+					popup.addEventListener('mouseover', (e) => {
+						this.createPopup(e, "VER WEB!", popup);
+					});
+				});
+			}
+		}	
 		
 		class window {
 				constructor(){
@@ -243,7 +348,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 					let keys = Object.keys(windows);
 					keys[0] === undefined ? this.id = 0 : this.id = Number(keys[keys.length - 1]) + 1;
 					windows[this.id] = this
-
+					
 					if(focused != undefined){
 						this.setZindex(focused.z_index + 1)
 					}
@@ -252,8 +357,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 					}
 					focused = this;
 				}
-
-
+				
+				get_html(){
+					return this.html
+				}
 				init(){
 						this.html = document.createElement("div");
 						this.html.classList.add("window");
@@ -262,14 +369,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
 						body.appendChild(this.html);
 						this.html.style.right = "20%";
 						this.html.style.top = "10%";
-						
-
 						this.header = this.html.querySelector(".header_windows");
 						//close button
 						this.closeButton = this.html.querySelector(".close");
 						this.closeButton.addEventListener("click", () => remover(this));
 						/* 
-						//borders
 						let border = document.createElement("div");
 						border.classList.add("borders");
 						border.innerHTML = ` <div class="b-top"></div>
@@ -281,8 +385,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 								<div class="b-left-bottom"></div>
 								<div class="b-bottom"></div>
 						`;
-						this.html.appendChild(border); */
-					
+						this.html.appendChild(border); */	
 				}
 				setZindex(num){
 					this.z_index = num;
@@ -461,9 +564,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 									<i class="fa-regular fa-bookmark"></i>
 									<div id="ip" contenteditable="true">
 											<i class="fa-solid fa-circle-exclamation"></i>
-											127.0.0.1:8000
-									</div>
-							</header>
+											Sobre Mi
+									</header>
 							<section class="secction-home">
 									<div class="header-content">
 											<i class="fa-solid fa-bars"></i>
@@ -529,7 +631,44 @@ document.addEventListener('DOMContentLoaded', ()=>{
 			wiki_div.innerHTML = wiki_component    
 			new window().insert_content(wiki_div)
 		}
-
+		const new_skils = ()=>{
+			const skills = document.createElement('div');
+			skills.innerHTML = `
+				 <header class="header-home">
+                <div class="prev-post">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <i class="fa-solid fa-arrow-right"></i>
+                </div>
+                <i class="fa-regular fa-bookmark"></i>
+                <div id="ip" contenteditable="true">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        Skills
+                </div>
+            </header>
+            <div class="container-container-card-proyecto">
+                <div class="container-card" style="flex-direction: column;">
+                    <div class="card" style="margin: 20px;">
+                        <div class="card-header">
+                            <h3>SOFT SKILLS</h3>
+                        </div>
+                        <div>
+                            <p>La descripcion de este proyecto Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi illo facilis aliquam voluptatibus deserunt soluta explicabo cupiditate fugit aut, quos repellendus consequatur doloremque. Commodi ipsum nisi iusto excepturi doloribus eligendi! </p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>HARD SKILLS</h3>
+                        </div>
+                        <div>
+                            <p>La descripcion de este proyecto Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi illo facilis aliquam voluptatibus deserunt soluta explicabo cupiditate fugit aut, quos repellendus consequatur doloremque. Commodi ipsum nisi iusto excepturi doloribus eligendi! </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			`;  
+			skills.classList = "container-home";
+			new window().insert_content(skills)
+		}
 		const new_warning = ()=>{
 			const warning_div = document.createElement('div');
 			warning_div.innerHTML = `<i class="fa-solid fa-warning"></i>
@@ -540,15 +679,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 			new window().insert_content(warning_div)
 		}
 		const new_proyectos = ()=>{
-			let win = new window();
-			win.insert_content(win)
+			new window().insert_content(new proyect().html)
 		}
-	/* 	const new_game = ()=>{
-			let game = new Game();
-			new window().insert_content(game.html)
-			game.initGame()
-
-		} */
 
 		const iconos_dic = {
 			console: () => new window().insert_content(new console().html),
@@ -556,6 +688,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 			warning: () => new_warning(),
 			game: () => new_game(),
 			proyectos: () => new_proyectos(),
+			skill: () => new_skils(),
 		};    
 
 		const init_iconos= ()=>{

@@ -2,6 +2,38 @@
     --b: 2px;
 }
 
+/* Cursor personalizado */
+
+/* Agregar estos estilos para la selección de texto */
+::selection {
+    background-color: #26199e;
+    color: #ffffff;
+}
+
+/* Para compatibilidad con Firefox */
+::-moz-selection {
+    background-color: #26199e;
+    color: #ffffff;
+}
+/* .cursor {
+    width: 25px;
+    height: 25px;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    background: url('/cursorW.png') no-repeat center center;
+    background-size: contain;
+    transform: translate(-20%, -20%);
+    transition: width 0.2s, height 0.2s, background-color .2s;
+} */
+
+
+@font-face {
+    font-family: 'Roc Grotesk Wide';
+    src: url('/fonts/Fontspring-DEMO-rocgrotesk-bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 .bg {
     height: 100vh;
     width: 100vw;
@@ -75,6 +107,7 @@ h1 span {
 }
 
 .icono {
+    cursor: pointer;
     background: #1077f4;
 }
 
@@ -197,7 +230,7 @@ button {
 } */
 
 .window {
-    border: #d3e6fc 1px solid;
+    border: #757d86 1px solid;
     width: 70vw;
     height: 80vh;
     background-color: #000000;
@@ -332,7 +365,7 @@ p {
 #text1{
     height: 40%;
 }
-input{
+.navigate input{
     all: unset;
     width: 100%;
 }
@@ -492,14 +525,25 @@ input{
 
 .container-proyectos{
     height: 100%;
+    background-color: #0f0f0f;
     width: 100%;
     color: rgb(255, 255, 255);
 }
 .proyectos-contenedor-iconos{
-    display: flex;
-    flex-wrap: wrap;
+    display: flex; 
     padding: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    min-width: 380px;
 }
+.proyectos-contenedor-icono{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
 .container-folder{
     display: flex;
     flex-direction: column;
@@ -682,3 +726,158 @@ input{
 }
 
 /*! Fin Toast */
+
+/* !proyecto muestra */
+.container-container-card-proyecto{
+    background-color: #020010;
+    width: 100%;
+    height: 100%;
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+
+.container-card{
+
+    margin:30px 0;
+    padding: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.img-card{
+    border: 1px solid #1077f4;
+    box-shadow:  5px 5px 1px #1077f43a;
+    width: 25%;
+    margin-right: 20px;
+    object-fit: cover;
+    object-position: center;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    border: 1px solid #1077f4;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #0f0f0f;
+    color: white;
+    width: 50%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container-card button:hover{
+    transition: all .3s;
+    background-color: #070606;
+    color: #c7c7c7;
+}
+.container-card button:hover .fa-up-right-from-square{
+    color: #c7c7c7;
+}
+.popup{
+    padding: 10px;
+    border-radius: 10px;
+    position:  absolute;
+    background-color: #f3ebebcc;
+    z-index: 100;
+}
+.container-card button{
+    all: unset;
+    cursor: pointer;
+   
+    transition: all .3s;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #c7c7c7;
+    
+}
+
+.fa-up-right-from-square{
+    color: #090909;
+}
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.fa-brands {
+    margin-left: 10px;
+    color: #1077f4;
+    font-size: 2em;
+}
+
+/*! Fin proyecto muestra */
+
+
+/* !skills */
+
+.container-contact{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    color: #edeaff;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-contact{
+    color: #edeaff;
+    width:80%;
+    margin: 10px;
+    padding-left: 50px;
+    padding-top: 50px;
+    height: 100%;
+    align-items: start;
+    display: flex;
+}
+.contact{
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+}
+.fa-github{
+    color: #f1f1f1;
+    padding: 10px;
+    margin: 0;
+    font-size: 1em;
+}
+.contact a{
+    color: #1077f4;
+    text-decoration: none;
+}
+.card-title{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0 0 50px;
+    justify-content: start;
+    font-size: 1.5em
+}
+.divider{
+    width: 100%;
+    height: 1px;
+    padding-left: 50px;
+
+}
+.divider div{
+    border-radius: 100%;
+    width: 90%;
+    height: 1px;
+    background-color: #ffffff70;
+}
+.container-icono{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #151318;
+    padding: 10px;
+    font-size: 2em;
+    margin: 20px;
+}
