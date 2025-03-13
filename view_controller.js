@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 			}
 		}	
 		
-		class window {
+		class windows {
 				constructor(){
 					this.html;
 					this.x;
@@ -552,7 +552,75 @@ document.addEventListener('DOMContentLoaded', ()=>{
 				this.resutlHtml.innerHTML = "";
 			}
 		}
+		class contact{
+			constructor(){
+				this.html = document.createElement('div');
+				this.html.classList = 'container-home';
+				this.init()
+			}
+			init(){
+				this.html.innerHTML = `
+					<header class="header-home">
+						<div class="prev-post">
+								<i class="fa-solid fa-arrow-left"></i>
+								<i class="fa-solid fa-arrow-right"></i>
+						</div>
+						<i class="fa-regular fa-bookmark"></i>
+						<div id="ip" contenteditable="true">
+								<i class="fa-solid fa-circle-exclamation"></i>
+								127.0.0.1:8000
+						</div>
+					</header>
+					<div class="container-contact container-container-card-proyecto" >
+						<div class="card-title">
+							<h2>CONTACTO</h2>
+							<i class="fa-solid fa-paper-plane"></i>
+						</div>
+						<div class="divider"><div></div></div>
+						<div class="card-contact">
+							<div class="container-icono">
+								<div class="icono-card">
+									<i class="fa-solid fa-envelope"></i>
+								</div>
+								<div class="text-icono">Email</div>
+							</div>
+							<div class="container-icono">
+								<div class="icono-card">
+									<i class="fa-brands fa-github contacti"></i>
+								</div>
+								<div class="text-icono">Github</div>
+							</div>
+							<div class="container-icono">
+								<div class="icono-card">
+									<i class="fa-brands fa-linkedin contacti"></i>
+								</div>
+								<div class="text-icono">Linkedin</div>
+							</div>
+						</div>  
+						<div class="footer-contact">
+							<p>manuelcoriawork@gmail.com</p>
+						</div>
+					</div>
+				`;
+				let cards = this.html.querySelectorAll('.icono-card');
+				c(cards)
+				cards[0].addEventListener('click', () => {
+					c('mail')
+					window.open('mailto:manuelcoriawork@gmail.com', '_blank');
+				});
+				cards[1].addEventListener('click', () => {
+					window.open('https://github.com/coriawork', '_blank');
+				});
+				cards[2].addEventListener('click', () => {
+					window.open('https://www.linkedin.com/in/manuel-coria-401022260/', '_blank');
+				});
+			}
+			
+		}
 
+		const new_contact = ()=>{
+			new windows().insert_content(new contact().html);
+		}
 		const new_wiki = ()=>{
 			let wiki_div = document.createElement('div'); wiki_div.classList = 'container-home'
 			const wiki_component = `
@@ -629,7 +697,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 							</section>
 			`;
 			wiki_div.innerHTML = wiki_component    
-			new window().insert_content(wiki_div)
+			new windows().insert_content(wiki_div)
 		}
 		const new_skils = ()=>{
 			const skills = document.createElement('div');
@@ -667,7 +735,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             </div>
 			`;  
 			skills.classList = "container-home";
-			new window().insert_content(skills)
+			new windows().insert_content(skills)
 		}
 		const new_warning = ()=>{
 			const warning_div = document.createElement('div');
@@ -676,19 +744,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
 							<p>regresa mas tarde quizas ya este lista...</p>
 			`;  
 			warning_div.classList = 'container-warning'
-			new window().insert_content(warning_div)
+			new windows().insert_content(warning_div)
 		}
 		const new_proyectos = ()=>{
-			new window().insert_content(new proyect().html)
+			new windows().insert_content(new proyect().html)
 		}
 
 		const iconos_dic = {
-			console: () => new window().insert_content(new console().html),
+			console: () => new windows().insert_content(new console().html),
 			home: () => new_wiki(),
 			warning: () => new_warning(),
 			game: () => new_game(),
 			proyectos: () => new_proyectos(),
 			skill: () => new_skils(),
+			contact: () => new_contact()
 		};    
 
 		const init_iconos= ()=>{
