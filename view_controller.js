@@ -717,18 +717,30 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 <div class="container-card" style="flex-direction: column;">
                     <div class="card" style="margin: 20px;">
                         <div class="card-header">
-                            <h3>SOFT SKILLS</h3>
+                            <h3>Tecnicas</h3>
                         </div>
                         <div>
-                            <p>La descripcion de este proyecto Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi illo facilis aliquam voluptatibus deserunt soluta explicabo cupiditate fugit aut, quos repellendus consequatur doloremque. Commodi ipsum nisi iusto excepturi doloribus eligendi! </p>
+                            <p>
+                                •	Frontend: HTML, CSS, JavaScript, React, Tailwind, Next.js.<br>
+                                •	Backend: Java, PHP, Node.js, Python.<br>
+                                •	Bases de datos: MySQL.<br>
+                                •	Otros: Laravel, Slim, Git.<br>
+                            </p>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h3>HARD SKILLS</h3>
+                            <h3>SOFT SKILLS</h3>
                         </div>
                         <div>
-                            <p>La descripcion de este proyecto Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi illo facilis aliquam voluptatibus deserunt soluta explicabo cupiditate fugit aut, quos repellendus consequatur doloremque. Commodi ipsum nisi iusto excepturi doloribus eligendi! </p>
+                            <p>
+                            •	Resolución de problemas<br>
+                            •	Trabajo en equipo y colaboración<br>
+                            •	Adaptabilidad<br>
+                            •	Pensamiento crítico<br>
+                            •	Atención al detalle<br>
+                            •	Comunicación efectiva<br>
+                            </p>
                         </div>
                     </div>
                 </div>
