@@ -323,10 +323,6 @@ class PortfolioApp {
                 <p class="linkedin-subtitle">Full-stack Developer | Estudiante de Sistemas</p>
             </div>
             <div class="linkedin-content">
-                <div class="profile-summary">
-                    <h2>Acerca de</h2>
-                    <p>Desarrollador full-stack apasionado por crear soluciones tecnológicas innovadoras. Con 7 años de experiencia en desarrollo web, combinando aprendizaje autodidacta con formación académica. Actualmente cursando Licenciatura en Sistemas en la Universidad Nacional de La Plata.</p>
-                </div>
                 
                 <div class="contact-card">
                     <div class="contact-card-header">
@@ -364,16 +360,6 @@ class PortfolioApp {
                                 </div>
                             </a>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-card-header">
-                        <i class="fa-solid fa-graduation-cap"></i> Educación
-                    </div>
-                    <div class="contact-card-body">
-                        <h3 style="margin: 0 0 8px 0;">Universidad Nacional de La Plata</h3>
-                        <p style="margin: 0; color: #666;">Licenciatura en Sistemas • 3er año (activo)</p>
                     </div>
                 </div>
             </div>
