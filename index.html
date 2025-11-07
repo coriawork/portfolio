@@ -1,59 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#090909">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>PORTFOLIO RARE</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Enlaza Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <!-- Enlaza Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
 </head>
-<body class="noisy ">
+<body class="noisy">
     <div class="bg">
-        <h1 > Soy<span> Manuel Coria</span></h1>
+        <h1>Soy<span> Manuel Coria</span></h1>
     </div>
+    
     <div class="contenedor-iconos">
         <div class="contenedor-icono">
-            <i id="home" class="icono fa-solid fa-house"></i>
+            <i id="home" class="icono fa-solid fa-house" aria-label="Sobre mi"></i>
             <p>Sobre mi</p>
         </div>
         <div class="contenedor-icono">
-            <i id="skill" class="icono fa-solid fa-gear"></i>
-            <p >Skills</p>
+            <i id="skill" class="icono fa-solid fa-gear" aria-label="Skills"></i>
+            <p>Skills</p>
         </div>
         <div class="contenedor-icono">
-            <i id="warning" class="icono fa-solid fa-folder-open"></i>
-            <p >Proyectos</p>
+            <i id="warning" class="icono fa-solid fa-folder-open" aria-label="Proyectos"></i>
+            <p>Proyectos</p>
         </div>
         <div class="contenedor-icono">
-            <i id="warning" class="icono fa-solid fa-paper-plane"></i>
-            <p >Contactame</p>
+            <i id="contact" class="icono fa-solid fa-paper-plane" aria-label="Contacto"></i>
+            <p>Contactame</p>
         </div>
-        <div class="contenedor-icono" >
-            <i id="console" class="icono fa-solid fa-terminal" style="background-color: black;"></i>
-            <p >Terminal</p>
+        <div class="contenedor-icono">
+            <i id="console" class="icono fa-solid fa-terminal" style="background-color: black;" aria-label="Terminal"></i>
+            <p>Terminal</p>
         </div>
     </div>
     
-    <div class="iconos"></div>
-    <!-- <i id="pointer-tutorial" class="fa-solid fa-arrow-pointer"></i> -->
-
     <div class="tutorial">
         <div class="toast">
-            <header class=""><div class="close" id="close-toast">x</div></header>
+            <header>
+                <div class="close" id="close-toast" aria-label="Cerrar">×</div>
+            </header>
             <section class="toast-body">
-                <p style="font-weight: 900; padding-right: 20px;">Click en los iconos para navegar por el portafolio</p>
-                <!-- <p>¡Espero que te guste!</p> -->
+                <p style="font-weight: 900; padding-right: 20px;">
+                    Click en los iconos para navegar por el portafolio
+                </p>
             </section>
         </div>
     </div>
+
+    <script type="module" src="view_controller.js"></script>
 </body>
-
-<script type="module" src="view_controller.js"></script>
-
 </html>

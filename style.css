@@ -240,6 +240,16 @@ button {
     display: flex;
     flex-direction: column;
     z-index: 0;
+    transition: border-color 0.2s ease;
+}
+
+.window-focused {
+    border-color: #1077f4;
+    box-shadow: 0 0 10px rgba(16, 119, 244, 0.3);
+}
+
+.window-focused .header_windows {
+    background-color: hsl(223, 24%, 15%);
 }
 
 .console {
@@ -918,4 +928,411 @@ p {
 }
 .home-contact{
     overflow: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Fondo principal responsive */
+    .bg h1 {
+        font-size: 2rem;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .bg h1 span {
+        display: block;
+        margin-top: 10px;
+    }
+
+    /* Contenedor de iconos responsive */
+    .contenedor-iconos {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        height: 80px;
+        background-color: rgba(9, 9, 9, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid #333;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        z-index: 1000;
+    }
+
+    .contenedor-icono {
+        margin: 5px;
+        flex: 1;
+        max-width: 60px;
+    }
+
+    .contenedor-icono p {
+        font-size: 0.7rem;
+        margin-top: 5px;
+    }
+
+    .icono {
+        padding: 8px;
+        font-size: 1.2rem;
+    }
+
+    /* Ventanas responsive */
+    .window {
+        width: 95vw !important;
+        height: calc(100vh - 100px) !important;
+        top: 10px !important;
+        left: 2.5vw !important;
+        right: auto !important;
+        border-radius: 10px 10px 0 0;
+    }
+
+    /* Header de ventanas */
+    .header_windows {
+        height: 40px;
+        padding: 0 15px;
+        touch-action: none;
+    }
+
+    .close {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    /* Contenido de ventanas responsive */
+    .container-home {
+        overflow-y: auto;
+    }
+
+    .header-home {
+        min-height: 50px;
+        padding: 0 10px;
+    }
+
+    #ip {
+        width: 70%;
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .prev-post {
+        display: none; /* Ocultar en mobile */
+    }
+
+    /* Console responsive */
+    .console {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+
+    #command-container {
+        padding: 15px;
+    }
+
+    /* Wiki/About responsive */
+    .secction-home {
+        padding: 10px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .img-block {
+        margin-left: 0;
+    }
+
+    #word {
+        width: 15%;
+    }
+
+    .navigate {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .navigate input {
+        padding: 10px;
+    }
+
+    .article-content {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .description {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .information {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .information img {
+        max-height: 200px;
+    }
+
+    /* Projects responsive */
+    .container-container-card-proyecto {
+        padding: 10px;
+    }
+
+    .container-card {
+        flex-direction: column;
+        margin: 15px 0;
+        padding: 15px;
+    }
+
+    .img-card {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+        max-height: 200px;
+    }
+
+    .card {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    #techs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .fa-brands {
+        font-size: 1.5rem;
+        margin-left: 5px;
+    }
+
+    /* Skills responsive */
+    .container-card[style*="flex-direction: column"] .card {
+        margin: 10px 0;
+    }
+
+    /* Contact responsive */
+    .container-contact {
+        padding: 20px 10px;
+    }
+
+    .card-title {
+        margin: 10px 0 0 20px;
+        font-size: 1.2rem;
+    }
+
+    .card-contact {
+        flex-direction: column;
+        padding-left: 0;
+        gap: 20px;
+    }
+
+    .container-icono {
+        width: 80%;
+    }
+
+    .icono-card {
+        font-size: 1.5rem;
+    }
+
+    .text-icono {
+        position: static;
+        opacity: 1;
+        transform: none;
+        margin-top: 10px;
+    }
+
+    .icono-card:hover + .text-icono {
+        transform: none;
+    }
+
+    .divider {
+        padding-left: 20px;
+    }
+
+    .footer-contact {
+        font-size: 0.9rem;
+        height: 60px;
+    }
+
+    /* Toast responsive */
+    .toast {
+        width: calc(100vw - 40px);
+        bottom: 90px; /* Sobre la barra de iconos */
+        right: 20px;
+        left: 20px;
+        margin: 0;
+    }
+
+    .toast-body {
+        padding: 10px;
+    }
+
+    .toast p {
+        font-size: 0.9rem;
+    }
+
+    /* Warning responsive */
+    .container-warning {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .container-warning .fa-warning {
+        font-size: 3rem;
+    }
+
+    .container-warning p {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablet responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .contenedor-iconos {
+        left: 10px;
+        top: 20px;
+    }
+
+    .contenedor-icono {
+        margin: 15px 10px;
+    }
+
+    .window {
+        width: 85vw;
+        height: 85vh;
+        left: 7.5vw;
+        top: 7.5vh;
+    }
+
+    .article-content {
+        flex-direction: column;
+    }
+
+    .description {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .information {
+        width: 100%;
+    }
+
+    .container-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img-card {
+        width: 60%;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        width: 90%;
+    }
+}
+
+/* Mejoras de interacción táctil */
+@media (hover: none) and (pointer: coarse) {
+    .icono:hover {
+        transform: none;
+    }
+
+    .icono:active {
+        background-color: #070606;
+        color: #c7c7c7;
+    }
+
+    .icono-card:hover {
+        background-color: #151318;
+    }
+
+    .icono-card:active {
+        background-color: #1077f4;
+        transition: background-color 0.1s;
+    }
+
+    /* Hacer tooltips visibles permanentemente en móvil */
+    .text-icono {
+        opacity: 1;
+        position: static;
+        transform: none;
+        margin-top: 10px;
+    }
+}
+
+/* Landscape móvil */
+@media (max-width: 768px) and (orientation: landscape) {
+    .window {
+        height: calc(100vh - 80px);
+    }
+
+    .bg h1 {
+        font-size: 1.8rem;
+    }
+
+    .contenedor-iconos {
+        height: 70px;
+    }
+
+    .contenedor-icono p {
+        font-size: 0.6rem;
+    }
+
+    .toast {
+        bottom: 80px;
+    }
+}
+
+/* Muy pequeñas pantallas */
+@media (max-width: 480px) {
+    .bg h1 {
+        font-size: 1.5rem;
+    }
+
+    .contenedor-icono p {
+        font-size: 0.6rem;
+    }
+
+    .icono {
+        padding: 6px;
+        font-size: 1rem;
+    }
+
+    .console {
+        font-size: 0.7rem;
+    }
+
+    #command-container {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .container-warning .fa-warning {
+        font-size: 2.5rem;
+    }
+
+    .container-warning p {
+        font-size: 1rem;
+    }
 }
