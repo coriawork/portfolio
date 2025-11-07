@@ -5,6 +5,7 @@ class WindowManager {
         this.windows = {};
         this.focusedWindow = null;
         this.nextId = 0;
+        this.currentMaxZIndex = 1;
     }
 
     createWindow() {
@@ -22,6 +23,8 @@ class WindowManager {
             
             if (this.focusedWindow === window) {
                 this.focusedWindow = null;
+                // Enfocar la ventana con mayor z-index
+                this.focusTopWindow();
             }
             
             log('Windows remaining:', Object.keys(this.windows).length);
@@ -29,12 +32,45 @@ class WindowManager {
     }
 
     setFocus(window) {
-        if (this.focusedWindow && this.focusedWindow !== window) {
-            const previousZ = this.focusedWindow.zIndex;
-            this.focusedWindow.setZIndex(window.zIndex);
-            window.setZIndex(previousZ);
-        }
+        if (this.focusedWindow === window) return; // Ya está enfocada
+        
+        // Incrementar el z-index máximo y asignarlo a la ventana enfocada
+        this.currentMaxZIndex++;
+        window.setZIndex(this.currentMaxZIndex);
         this.focusedWindow = window;
+        
+        // Agregar clase visual de enfoque
+        this.updateWindowFocus();
+    }
+
+    focusTopWindow() {
+        let topWindow = null;
+        let maxZ = 0;
+        
+        for (let id in this.windows) {
+            const window = this.windows[id];
+            if (window.zIndex > maxZ) {
+                maxZ = window.zIndex;
+                topWindow = window;
+            }
+        }
+        
+        if (topWindow) {
+            this.focusedWindow = topWindow;
+            this.updateWindowFocus();
+        }
+    }
+
+    updateWindowFocus() {
+        // Remover clase de enfoque de todas las ventanas
+        for (let id in this.windows) {
+            this.windows[id].element.classList.remove('window-focused');
+        }
+        
+        // Agregar clase de enfoque a la ventana actual
+        if (this.focusedWindow) {
+            this.focusedWindow.element.classList.add('window-focused');
+        }
     }
 
     getNextId() {
@@ -46,7 +82,7 @@ class Window {
     constructor(manager) {
         this.manager = manager;
         this.id = manager.getNextId();
-        this.zIndex = this.id + 1;
+        this.zIndex = ++manager.currentMaxZIndex; // Asignar el siguiente z-index disponible
         this.isDragging = false;
         this.dragOffset = { x: 0, y: 0 };
         this.position = { x: 0, y: 0 };
@@ -98,29 +134,57 @@ class Window {
     }
 
     setupEventListeners() {
-        this.closeButton.addEventListener('click', () => {
+        // Mejorar el evento de cierre para móvil
+        this.closeButton.addEventListener('click', (e) => {
+            e.stopPropagation();
             this.manager.removeWindow(this.id);
         });
 
-        // Touch events para móvil
+        // Agregar evento touch para móvil
+        this.closeButton.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.manager.removeWindow(this.id);
+        });
+
+        // Touch events para móvil - solo en el header, no en el botón de cierre
         if (this.isMobile) {
             this.header.addEventListener('touchstart', (e) => {
+                // No procesar si el toque es en el botón de cierre
+                if (this.closeButton.contains(e.target)) {
+                    return;
+                }
                 e.preventDefault();
+                this.manager.setFocus(this);
                 this.startDrag(e.touches[0]);
             }, { passive: false });
             
             document.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                if (e.touches[0]) {
-                    this.drag(e.touches[0]);
+                if (this.isDragging) {
+                    e.preventDefault();
+                    if (e.touches[0]) {
+                        this.drag(e.touches[0]);
+                    }
                 }
             }, { passive: false });
             
-            document.addEventListener('touchend', this.stopDrag);
+            document.addEventListener('touchend', (e) => {
+                if (this.isDragging) {
+                    this.stopDrag();
+                }
+            });
         }
 
         // Mouse events para desktop
-        this.header.addEventListener('mousedown', this.startDrag);
+        this.header.addEventListener('mousedown', (e) => {
+            // No procesar si el click es en el botón de cierre
+            if (this.closeButton.contains(e.target)) {
+                return;
+            }
+            this.manager.setFocus(this);
+            this.startDrag(e);
+        });
+        
         document.addEventListener('mousemove', this.drag);
         document.addEventListener('mouseup', this.stopDrag);
         
@@ -130,12 +194,19 @@ class Window {
             }
         });
 
-        this.element.addEventListener('mousedown', () => {
-            this.manager.setFocus(this);
+        // Enfocar ventana al hacer click en cualquier parte
+        this.element.addEventListener('mousedown', (e) => {
+            // Solo si no se está haciendo click en el header (ya manejado arriba)
+            if (!this.header.contains(e.target)) {
+                this.manager.setFocus(this);
+            }
         });
 
-        this.element.addEventListener('touchstart', () => {
-            this.manager.setFocus(this);
+        this.element.addEventListener('touchstart', (e) => {
+            // Solo si no se está haciendo click en el header
+            if (!this.header.contains(e.target)) {
+                this.manager.setFocus(this);
+            }
         });
 
         // Prevenir zoom en mobile al hacer doble tap

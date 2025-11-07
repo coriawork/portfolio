@@ -154,116 +154,230 @@ class PortfolioApp {
     }
 
     createSkillsContent() {
-        return createElement('div', 'container-home', `
-            <header class="header-home">
-                <div class="prev-post">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <i class="fa-solid fa-arrow-right"></i>
+        const skillsData = [
+            // Lenguajes
+            { name: 'PHP', category: 'Lenguajes', level: 'expert',  icon: 'fa-code' },
+            { name: 'JavaScript (ES6+)', category: 'Lenguajes', level: 'expert',  icon: 'fa-code' },
+            { name: 'SQL', category: 'Lenguajes', level: 'advanced',  icon: 'fa-code' },
+            { name: 'Java', category: 'Lenguajes', level: 'advanced',  icon: 'fa-code' },
+            { name: 'Bash/Shell scripting', category: 'Lenguajes', level: 'intermediate',  icon: 'fa-code' },
+            { name: 'TypeScript', category: 'Lenguajes', level: 'beginner',  icon: 'fa-code' },
+            { name: 'Python', category: 'Lenguajes', level: 'beginner',  icon: 'fa-code' },
+            
+            // Frontend
+            { name: 'React', category: 'Frontend', level: 'advanced',  icon: 'fa-palette' },
+            { name: 'Next.js', category: 'Frontend', level: 'intermediate',  icon: 'fa-palette' },
+            { name: 'Vue.js', category: 'Frontend', level: 'intermediate',  icon: 'fa-palette' },
+            { name: 'jQuery', category: 'Frontend', level: 'advanced',  icon: 'fa-palette' },
+            { name: 'Tailwind CSS', category: 'Frontend', level: 'expert',  icon: 'fa-palette' },
+            { name: 'Bootstrap', category: 'Frontend', level: 'expert',  icon: 'fa-palette' },
+            { name: 'Material UI', category: 'Frontend', level: 'expert',  icon: 'fa-palette' },
+            { name: 'shadcn/ui', category: 'Frontend', level: 'expert',  icon: 'fa-palette' },
+            { name: 'Vite', category: 'Frontend', level: 'expert',  icon: 'fa-palette' },
+            
+            // Backend
+            { name: 'Node.js', category: 'Backend', level: 'advanced',  icon: 'fa-server' },
+            { name: 'Express.js', category: 'Backend', level: 'advanced',  icon: 'fa-server' },
+            { name: 'Laravel', category: 'Backend', level: 'expert',  icon: 'fa-server' },
+            { name: 'Slim', category: 'Backend', level: 'expert',  icon: 'fa-server' },
+            { name: 'Symfony', category: 'Backend', level: 'intermediate',  icon: 'fa-server' },
+            { name: 'Flask', category: 'Backend', level: 'intermediate',  icon: 'fa-server' },
+            { name: 'Django', category: 'Backend', level: 'beginner',  icon: 'fa-server' },
+            { name: 'Spring Boot', category: 'Backend', level: 'beginner',  icon: 'fa-server' },
+            
+            // Arquitecturas
+            { name: 'APIs RESTful', category: 'Arquitecturas', level: 'expert',  icon: 'fa-sitemap' },
+            { name: 'JWT', category: 'Arquitecturas', level: 'advanced',  icon: 'fa-sitemap' },
+            { name: 'OAuth2', category: 'Arquitecturas', level: 'intermediate',  icon: 'fa-sitemap' },
+            { name: 'Monolítico', category: 'Arquitecturas', level: 'advanced',  icon: 'fa-sitemap' },
+            { name: 'MVC', category: 'Arquitecturas', level: 'expert',  icon: 'fa-sitemap' },
+            { name: 'Arquitectura Limpia', category: 'Arquitecturas', level: 'advanced',  icon: 'fa-sitemap' },
+            
+            // Bases de datos
+            { name: 'MySQL', category: 'Database', level: 'expert',  icon: 'fa-database' },
+            { name: 'PostgreSQL', category: 'Database', level: 'intermediate',  icon: 'fa-database' },
+            { name: 'SQLite', category: 'Database', level: 'advanced',  icon: 'fa-database' },
+            { name: 'Sequelize', category: 'Database', level: 'advanced',  icon: 'fa-database' },
+            { name: 'Eloquent ORM', category: 'Database', level: 'expert',  icon: 'fa-database' },
+            
+            // Testing
+            { name: 'PHPUnit', category: 'Testing', level: 'intermediate',  icon: 'fa-vial' },
+            { name: 'Pytest', category: 'Testing', level: 'beginner',  icon: 'fa-vial' },
+            
+            // Herramientas
+            { name: 'Git', category: 'Tools', level: 'expert',  icon: 'fa-wrench' },
+            { name: 'GitHub', category: 'Tools', level: 'expert',  icon: 'fa-wrench' },
+            { name: 'GitLab', category: 'Tools', level: 'intermediate',  icon: 'fa-wrench' },
+            { name: 'Agile', category: 'Tools', level: 'expert',  icon: 'fa-wrench' },
+            { name: 'Scrum', category: 'Tools', level: 'expert',  icon: 'fa-wrench' },
+            { name: 'Jira', category: 'Tools', level: 'intermediate',  icon: 'fa-wrench' },
+            { name: 'Trello', category: 'Tools', level: 'advanced',  icon: 'fa-wrench' },
+            { name: 'Notion', category: 'Tools', level: 'advanced',  icon: 'fa-wrench' },
+            
+            // Otros
+            { name: 'JSON', category: 'Otros', level: 'expert',  icon: 'fa-cogs' },
+            { name: 'Diseño Responsive', category: 'Otros', level: 'expert',  icon: 'fa-cogs' },
+            { name: 'Integración de IA', category: 'Otros', level: 'intermediate',  icon: 'fa-cogs' },
+            { name: 'Web Scraping', category: 'Otros', level: 'intermediate',  icon: 'fa-cogs' },
+            { name: 'Integración de APIs', category: 'Otros', level: 'expert',  icon: 'fa-cogs' }
+        ];
+
+        const softSkills = [
+            'Resolución de problemas',
+            'Trabajo en equipo',
+            'Adaptabilidad',
+            'Pensamiento crítico',
+            'Atención al detalle',
+            'Comunicación efectiva',
+            'Liderazgo',
+            'Manejo de equipos',
+            'Organización'
+        ];
+
+        const skillsElement = createElement('div', 'notion-style');
+        skillsElement.innerHTML = `
+            <div class="notion-header">
+                <h1 class="notion-title">Tech Stack & Skills</h1>
+                <p class="notion-subtitle">Una vista general de mis habilidades técnicas y experiencia en desarrollo</p>
+            </div>
+            <div class="notion-content">
+                <div class="notion-callout">
+                    <div class="notion-callout-icon">💡</div>
+                    <div class="notion-callout-content">
+                        <p><strong>5 años de experiencia</strong> combinando aprendizaje autodidacta con formación académica. Enfoque en desarrollo full-stack con tecnologías modernas.</p>
+                    </div>
                 </div>
-                <i class="fa-regular fa-bookmark"></i>
-                <div id="ip" contenteditable="true">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    Skills
-                </div>
-            </header>
-            <div class="container-container-card-proyecto">
-                <div class="container-card" style="flex-direction: column;">
-                    <div class="card" style="margin: 20px;">
-                        <div class="card-header">
-                            <h3>Técnicas</h3>
+                
+                <div class="notion-section">
+                    <h2><span class="notion-emoji"></span>Habilidades Técnicas</h2>
+                    <div class="notion-database">
+                        <div class="notion-table-header">
+                            <div>Tecnología</div>
+                            <div>Categoría</div>
+                            <div>Nivel</div>
                         </div>
-                        <div>
-                            <p>
-                                • Frontend: HTML, CSS, JavaScript, React, Tailwind, Next.js.<br>
-                                • Backend: Java, PHP, Node.js, Python.<br>
-                                • Bases de datos: MySQL.<br>
-                                • Otros: Laravel, Slim, Git.<br>
-                            </p>
+                        ${skillsData.map(skill => `
+                            <div class="notion-table-row">
+                                <div class="notion-skill-name">
+                                    <i style="color: #555;" class="fa-solid ${skill.icon} notion-skill-icon"></i>
+                                    ${skill.name}
+                                </div>
+                                <div class="notion-category ${skill.category}">${skill.category}</div>
+                                <div class="notion-level">
+                                    <div class="notion-level-bar">
+                                        <div class="notion-level-fill ${skill.level}"></div>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="notion-section">
+                    <h2><span class="notion-emoji"></span>Soft Skills</h2>
+                    <div class="notion-callout">
+                        <div class="notion-callout-content">
+                            <p><strong>Habilidades interpersonales y de gestión:</strong></p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin-top: 12px;">
+                                ${softSkills.map(skill => `
+                                    <span style="background-color: #e1ecf4; color: #39739d; padding: 6px 12px; border-radius: 6px; font-size: 13px; text-align: center;">
+                                        ${skill}
+                                    </span>
+                                `).join('')}
+                            </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Soft Skills</h3>
-                        </div>
-                        <div>
-                            <p>
-                                • Resolución de problemas<br>
-                                • Trabajo en equipo y colaboración<br>
-                                • Adaptabilidad<br>
-                                • Pensamiento crítico<br>
-                                • Atención al detalle<br>
-                                • Comunicación efectiva<br>
-                            </p>
+                </div>
+                
+                <div class="notion-section">
+                    <h2><span class="notion-emoji"></span>Aprendizaje Continuo</h2>
+                    <div class="notion-callout">
+                        <div class="notion-callout-icon"></div>
+                        <div class="notion-callout-content">
+                            <p>Actualmente profundizando en: <strong>DevOps</strong>, <strong>Cloud Architecture</strong> y <strong>Microservicios</strong>. Siempre explorando nuevas tecnologías para crear mejores soluciones.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        `);
+        `;
+
+        setTimeout(() => {
+            const levelBars = skillsElement.querySelectorAll('.notion-level-fill');
+            levelBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.transition = 'width 0.8s ease';
+                }, index * 50);
+            });
+        }, 500);
+
+        return skillsElement;
     }
 
     createContactContent() {
-        const contactElement = createElement('div', 'container-home', `
-            <header class="header-home">
-                <div class="prev-post">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <i class="fa-solid fa-arrow-right"></i>
+        const contactElement = createElement('div', 'linkedin-style');
+        contactElement.innerHTML = `
+            <div class="linkedin-header">
+                <h1>Manuel Coria</h1>
+                <p class="linkedin-subtitle">Full-stack Developer | Estudiante de Sistemas</p>
+            </div>
+            <div class="linkedin-content">
+                <div class="profile-summary">
+                    <h2>Acerca de</h2>
+                    <p>Desarrollador full-stack apasionado por crear soluciones tecnológicas innovadoras. Con 7 años de experiencia en desarrollo web, combinando aprendizaje autodidacta con formación académica. Actualmente cursando Licenciatura en Sistemas en la Universidad Nacional de La Plata.</p>
                 </div>
-                <i class="fa-regular fa-bookmark"></i>
-                <div id="ip" contenteditable="true">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    Contacto
-                </div>
-            </header>
-            <div class="container-contact container-container-card-proyecto">
-                <div class="card-title">
-                    <h2>CONTACTO</h2>
-                    <i class="fa-solid fa-paper-plane"></i>
-                </div>
-                <div class="divider"><div></div></div>
-                <div class="card-contact">
-                    <div class="container-icono">
-                        <div class="icono-card email-contact">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div class="text-icono">Email</div>
+                
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <i class="fa-solid fa-address-book"></i> Información de contacto
                     </div>
-                    <div class="container-icono">
-                        <div class="icono-card github-contact">
-                            <i class="fa-brands fa-github contacti"></i>
+                    <div class="contact-card-body">
+                        <div class="contact-methods-linkedin">
+                            <a href="mailto:manuelcoriawork@gmail.com" class="contact-item email-contact">
+                                <div class="contact-item-icon email">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="contact-item-info">
+                                    <h3>Email</h3>
+                                    <p>manuelcoriawork@gmail.com</p>
+                                </div>
+                            </a>
+                            
+                            <a href="https://github.com/coriawork" target="_blank" class="contact-item github-contact">
+                                <div class="contact-item-icon github">
+                                    <i class="fa-brands fa-github"></i>
+                                </div>
+                                <div class="contact-item-info">
+                                    <h3>GitHub</h3>
+                                    <p>Revisa mis repositorios y proyectos</p>
+                                </div>
+                            </a>
+                            
+                            <a href="https://www.linkedin.com/in/manuel-coria-401022260/" target="_blank" class="contact-item linkedin-contact">
+                                <div class="contact-item-icon linkedin">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </div>
+                                <div class="contact-item-info">
+                                    <h3>LinkedIn</h3>
+                                    <p>Conectemos profesionalmente</p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="text-icono">Github</div>
-                    </div>
-                    <div class="container-icono">
-                        <div class="icono-card linkedin-contact">
-                            <i class="fa-brands fa-linkedin contacti"></i>
-                        </div>
-                        <div class="text-icono">Linkedin</div>
                     </div>
                 </div>
-                <div class="footer-contact">
-                    <p>manuelcoriawork@gmail.com</p>
+                
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <i class="fa-solid fa-graduation-cap"></i> Educación
+                    </div>
+                    <div class="contact-card-body">
+                        <h3 style="margin: 0 0 8px 0;">Universidad Nacional de La Plata</h3>
+                        <p style="margin: 0; color: #666;">Licenciatura en Sistemas • 3er año (activo)</p>
+                    </div>
                 </div>
             </div>
-        `);
-
-        // Setup contact interactions
-        setTimeout(() => {
-            const emailBtn = contactElement.querySelector('.email-contact');
-            const githubBtn = contactElement.querySelector('.github-contact');
-            const linkedinBtn = contactElement.querySelector('.linkedin-contact');
-
-            if (emailBtn) emailBtn.addEventListener('click', () => {
-                window.open('mailto:manuelcoriawork@gmail.com', '_blank');
-            });
-            
-            if (githubBtn) githubBtn.addEventListener('click', () => {
-                window.open('https://github.com/coriawork', '_blank');
-            });
-            
-            if (linkedinBtn) linkedinBtn.addEventListener('click', () => {
-                window.open('https://www.linkedin.com/in/manuel-coria-401022260/', '_blank');
-            });
-        }, 0);
+        `;
 
         return contactElement;
     }
