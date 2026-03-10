@@ -348,6 +348,7 @@ a {
   display: flex;
   flex-direction: row;
   gap: 32px;
+  flex-wrap: wrap;
   margin-bottom: 40px;
 }
 
@@ -959,6 +960,7 @@ body.page-sub {
 
 /* Stickers */
 
+
 #cara{
     position: absolute;
     top: 0;
@@ -970,8 +972,18 @@ body.page-sub {
     width: 100vw;
     height: 100vh;
 }
+
+
 #cara img{    
     height: 50vh;
+}
+
+.logo{
+    position: absolute;
+}
+
+.logo img{
+    height: 70px;
 }
 
 @media (max-width: 680px) {
@@ -980,7 +992,25 @@ body.page-sub {
     height: 32px;
     font-size: 13px;
   }
-  .sticker{
-    display: none;
-  }
+
+
+}
+
+@media (max-width: 500px) {
+    #cara{
+        padding-top: 106vh;
+
+    }
+    #cara img {
+        height: 20vh;
+    }
+
+}
+
+@media (max-width: 260px) {
+    #cara{
+        display: none;
+
+    }
+
 }
