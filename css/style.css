@@ -726,7 +726,6 @@ body.page-sub {
 .proj-detail-shell {
   position: relative;
   z-index: 1;
-  max-width: 80vw;
   margin: 0 auto;
   padding: 64px 10vw 100px;
 }
@@ -750,7 +749,6 @@ body.page-sub {
   font-size: 16px;
   color: var(--text-body);
   line-height: 1.8;
-  max-width: 580px;
   margin-bottom: 24px;
 }
 
@@ -824,7 +822,6 @@ body.page-sub {
   font-size: 15px;
   color: var(--text-body);
   line-height: 1.85;
-  max-width: 640px;
 }
 
 .proj-detail-text + .proj-detail-text {
@@ -960,10 +957,30 @@ body.page-sub {
   pointer-events: none;
 }
 
+/* Stickers */
+
+#cara{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 120vh;
+    align-items: flex-end;
+    width: 100vw;
+    height: 100vh;
+}
+#cara img{    
+    height: 50vh;
+}
+
 @media (max-width: 680px) {
   .carousel-btn {
     width: 32px;
     height: 32px;
     font-size: 13px;
+  }
+  .sticker{
+    display: none;
   }
 }
