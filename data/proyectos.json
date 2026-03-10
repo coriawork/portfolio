@@ -1,0 +1,170 @@
+[
+  {
+    "id": "bot-whatsapp",
+    "index": "01",
+    "title": ["Bot de WhatsApp", "Canchas de Fútbol"],
+    "titleShort": "Bot de WhatsApp — Canchas de Fútbol",
+    "lead": "Automatización completa de reservas de canchas via WhatsApp con confirmación de turnos en tiempo real y panel de operadores.",
+    "badge": null,
+    "tags": ["Node.js", "JavaScript", "React", "Laravel", "MySQL", "Api Gemini"],
+    "images": ["FutBot.png", "FutBot2.png", "FutBot3.png"],
+    "sections": [
+      {
+        "title": "Descripción",
+        "paragraphs": [
+          "Bot automatizado que gestiona reservas de canchas de fútbol y responde consultas de clientes en tiempo real a través de WhatsApp. Integra lógica de disponibilidad horaria, confirmación automática de turnos y comunicación directa con los operadores del negocio.",
+          "El sistema cuenta con un panel web para los administradores donde pueden ver el estado de las reservas, bloquear horarios y gestionar la disponibilidad de canchas en tiempo real."
+        ]
+      },
+      {
+        "title": "Desafíos técnicos",
+        "paragraphs": [
+          "Uno de los principales desafíos fue manejar la concurrencia de reservas simultáneas para evitar conflictos de horario, implementando un sistema de bloqueo optimista en la base de datos. También fue necesario aprender a manejar agentes de IA capaces de ejecutar funciones."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "versionado-musical",
+    "index": "02",
+    "title": ["Sistema de Versionado", "Musical"],
+    "titleShort": "Sistema de Versionado Musical",
+    "lead": "Plataforma tipo Git para músicos: historial de versiones de composiciones y colaboración privada antes del lanzamiento.",
+    "badge": null,
+    "tags": ["Laravel", "PHP", "React", "MySQL", "Tailwind CSS"],
+    "images": [],
+    "sections": [
+      {
+        "title": "Descripción",
+        "paragraphs": [
+          "Plataforma de versionado para músicos, inspirada en el flujo de trabajo de Git, que permite gestionar y mantener el historial completo de cambios de composiciones musicales. Cada versión queda registrada con fecha, descripción de los cambios y archivos adjuntos.",
+          "Facilita la colaboración privada entre artistas, permitiendo invitar colaboradores al proyecto antes del lanzamiento público de la obra, con control de permisos por rol."
+        ]
+      },
+      {
+        "title": "Desafíos técnicos",
+        "paragraphs": [
+          "El principal desafío fue modelar el concepto de \"versión\" de forma genérica para soportar distintos formatos de archivo musical (MIDI, MP3, partituras PDF) y diseñar una interfaz que resultara intuitiva para músicos sin experiencia en herramientas de control de versiones."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gestion-alquileres",
+    "index": "03",
+    "title": ["Sistema de Gestión", "de Alquileres"],
+    "titleShort": "Sistema de Gestión de Alquileres",
+    "lead": "Aplicación web universitaria para gestión de inmuebles en alquiler. Calificación sobresaliente en la UNLP.",
+    "badge": "Proyecto UNLP",
+    "tags": ["PHP", "Laravel", "JavaScript", "MySQL", "HTML / CSS"],
+    "images": [],
+    "sections": [
+      {
+        "title": "Descripción",
+        "paragraphs": [
+          "Aplicación web desarrollada en el marco académico de la UNLP, obteniendo una calificación sobresaliente. Permite a propietarios publicar inmuebles en alquiler y gestionar contratos, mientras que los inquilinos pueden explorar y reservar propiedades.",
+          "Incluye módulo de búsqueda con filtros avanzados, perfiles de usuario diferenciados por rol (propietario / inquilino / administrador) y gestión completa de los estados del alquiler: disponible, reservado, en curso y finalizado."
+        ]
+      },
+      {
+        "title": "Desafíos técnicos",
+        "paragraphs": [
+          "La mayor complejidad estuvo en diseñar el modelo de datos para reflejar correctamente los estados del ciclo de vida de un alquiler y garantizar la consistencia entre las transiciones. También fue necesario implementar un sistema de notificaciones por correo para los eventos más relevantes del proceso."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sitios-historicos",
+    "index": "04",
+    "title": ["Manejo de Sitios", "Históricos"],
+    "titleShort": "Manejo de Sitios Históricos",
+    "lead": "Sitio web para explorar la ubicación y estado de los sitios históricos de una ciudad.",
+    "badge": "Proyecto UNLP",
+    "tags": ["Python", "Flask", "React", "Tailwind"],
+    "images": [],
+    "sections": [
+      {
+        "title": "Descripción",
+        "paragraphs": [
+          "Sitio web para ver dónde se encuentran y en qué estado están los sitios históricos de una ciudad. Permite a los usuarios explorar un mapa interactivo y acceder a información detallada de cada sitio."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "extension-chrome",
+    "index": "05",
+    "title": ["Extensión Chrome", "Club River Plate"],
+    "titleShort": "Extensión Chrome — Club River Plate",
+    "lead": "Extensión para Google Chrome que muestra información en tiempo real sobre los próximos partidos consumiendo APIs externas.",
+    "badge": null,
+    "tags": ["JavaScript", "HTML / CSS"],
+    "images": [],
+    "sections": [
+      {
+        "title": "Descripción",
+        "paragraphs": [
+          "Extensión para Google Chrome que consume APIs externas de datos deportivos y muestra al usuario información actualizada sobre los próximos partidos del Club Atlético River Plate: fecha, rival, horario, competición y estadio.",
+          "El popup se abre desde el icono en la barra del navegador y presenta los datos de forma clara y compacta, con el diseño visual del club."
+        ]
+      },
+      {
+        "title": "Desafíos técnicos",
+        "paragraphs": [
+          "El mayor desafío fue trabajar con las restricciones de Content Security Policy de las extensiones de Chrome y manejar correctamente el ciclo de vida del service worker para actualizar el badge del icono con el próximo partido sin impactar el rendimiento del navegador."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gestion-textil",
+    "index": "06",
+    "title": ["Sistema de Gestión", "para Negocio Textil"],
+    "titleShort": "Sistema de Gestión Textil",
+    "lead": "Sistema a medida que automatiza el cálculo de costos de producción y precio de venta para un negocio de confección.",
+    "badge": null,
+    "tags": ["PHP", "Laravel", "Slim", "MySQL"],
+    "images": [],
+    "sections": [
+      {
+        "title": "Descripción",
+        "paragraphs": [
+          "Sistema a medida para un negocio de confección textil que automatiza el cálculo de costos de producción y precio de venta en base a materiales, mano de obra y gastos operativos. Permite registrar productos, gestionar el stock de materias primas y obtener el costo real de cada prenda producida.",
+          "Requirió un análisis profundo del dominio del negocio para modelar correctamente la lógica de precios, rentabilidad por producto y variación de costos según los precios de insumos."
+        ]
+      },
+      {
+        "title": "Desafíos técnicos",
+        "paragraphs": [
+          "El principal desafío fue entender el dominio específico del cliente — un negocio textil con lógica de costos no trivial — y traducirlo fielmente a un modelo de datos flexible que pudiera adaptarse a cambios en los precios de insumos sin perder el historial de costos previos de cada producto."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "comedor-comunitario",
+    "index": "07",
+    "title": ["Web de Pedidos", "Comedor Comunitario"],
+    "titleShort": "Web de Pedidos — Comedor Comunitario",
+    "lead": "Sitio web para explorar el menú, realizar pedidos online y coordinar el retiro en el local.",
+    "badge": null,
+    "tags": ["PHP", "jQuery", "HTML / CSS"],
+    "images": [],
+    "sections": [
+      {
+        "title": "Descripción",
+        "paragraphs": [
+          "Página web diseñada para un comedor comunitario que permite a los usuarios explorar el menú del día, realizar pedidos online con distintos métodos de pago y coordinar el retiro del pedido en el local. Simplifica la gestión de demanda y reduce los tiempos de espera.",
+          "Los administradores del comedor cuentan con un panel para gestionar el menú diario, visualizar los pedidos pendientes en tiempo real y marcarlos como listos para retiro."
+        ]
+      },
+      {
+        "title": "Desafíos técnicos",
+        "paragraphs": [
+          "El desafío central fue diseñar una experiencia de usuario simple y accesible para un público con variado nivel de familiaridad tecnológica, priorizando la claridad del flujo de pedido por sobre la complejidad de funcionalidades."
+        ]
+      }
+    ]
+  }
+]

@@ -56,9 +56,9 @@
   if (!el) return;
 
   const phrases = [
-    'Del problema\na la solución.',
-    'De tu idea\nal código.',
-    'Hagamoslo realidad :)',
+    'Del problema\n a la solución.',
+    'De tu idea\n al código.',
+    'Hagamoslo\n realidad :)',
   ];
 
   let phraseIndex = 0;
@@ -161,7 +161,6 @@
   const titles = [
     '✦ Manuel Coria ✦',
     '✦ Open to Work ✦',
-    '✦ De tu idea al CÓDIGO✦',
   ];
 
   const hiddenTitle = 'Te extraño :(';
@@ -209,7 +208,7 @@
   if (!el) return;
 
   const GITHUB_USERNAME = 'coriawork';
-  const eventsUrl = `https://api.github.com/users/${GITHUB_USERNAME}/events/public`;
+  const eventsUrl = `https://api.github.com/users/coriawork/events/public`;
 
   function formatDate(dateString) {
     const d = new Date(dateString);

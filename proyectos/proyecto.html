@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto — Manuel Coria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" type="image/svg+xml" href="../img/black-tie-brands-solid-full.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="page-sub">
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <main class="proj-detail-shell">
+    <a href="../proyectos.html" class="back-home">← Volver a proyectos</a>
+    <div id="proj-content"></div>
+  </main>
+
+  <script>
+    (async function () {
+      const params  = new URLSearchParams(window.location.search);
+      const id      = params.get('id');
+      const content = document.getElementById('proj-content');
+
+      function renderError(msg) {
+        content.innerHTML = `<p style="color:var(--text-dim);font-family:var(--font-mono);font-size:13px;">${msg}</p>`;
+      }
+
+      if (!id) { renderError('No se especificó ningún proyecto.'); return; }
+
+      let proyectos;
+      try {
+        const res = await fetch('../data/proyectos.json');
+        if (!res.ok) throw new Error();
+        proyectos = await res.json();
+      } catch {
+        renderError('No se pudo cargar la información de proyectos.');
+        return;
+      }
+
+      const p = proyectos.find(x => x.id === id);
+      if (!p) { renderError('Proyecto no encontrado.'); return; }
+
+      // Actualizar título de pestaña
+      document.title = p.titleShort + ' — Manuel Coria';
+
+      // ── Header ──────────────────────────────────────────────
+      let html = `
+        <header class="proj-detail-header">
+          <span class="proj-index" style="color:var(--accent);">${p.index}</span>
+          <h1 class="proj-detail-title">${p.title.join('<br>')}</h1>
+          <p class="proj-detail-lead">${p.lead}</p>
+          <ul class="proj-tags proj-tags--detail" aria-label="Stack tecnico">
+            ${p.tags.map(t => `<li class="proj-tag">${t}</li>`).join('')}
+          </ul>
+          ${p.badge ? `<span class="proj-badge proj-badge--detail">${p.badge}</span>` : ''}
+        </header>
+      `;
+
+      // ── Imágenes / Carrusel ──────────────────────────────────
+      if (p.images && p.images.length > 0) {
+        if (p.images.length === 1) {
+          // Una sola imagen: sin controles
+          html += `
+            <section class="proj-detail-images" aria-label="Capturas del proyecto">
+              <div class="carousel">
+                <div class="carousel-track-wrapper">
+                  <div class="carousel-track">
+                    <div class="carousel-slide">
+                      <img src="../img/${p.images[0]}" alt="${p.titleShort}" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          `;
+        } else {
+          // Múltiples imágenes: carrusel completo
+          const slides = p.images.map(img => `
+            <div class="carousel-slide">
+              <img src="../img/${img}" alt="${p.titleShort}" />
+            </div>
+          `).join('');
+
+          html += `
+            <section class="proj-detail-images" aria-label="Capturas del proyecto">
+              <div class="carousel" id="carousel">
+                <div class="carousel-track-wrapper">
+                  <div class="carousel-track" id="carouselTrack">${slides}</div>
+                </div>
+                <button class="carousel-btn carousel-btn-prev" id="btnPrev" aria-label="Anterior">&#8592;</button>
+                <button class="carousel-btn carousel-btn-next" id="btnNext" aria-label="Siguiente">&#8594;</button>
+                <div class="carousel-counter" id="carouselCounter">1 / ${p.images.length}</div>
+                <div class="carousel-dots" id="carouselDots"></div>
+              </div>
+            </section>
+          `;
+        }
+      } else {
+        html += `
+          <section class="proj-detail-images" aria-label="Capturas del proyecto">
+            <div class="proj-img-placeholder">
+              <span class="proj-img-placeholder-text">Imágenes próximamente</span>
+            </div>
+          </section>
+        `;
+      }
+
+      // ── Secciones de texto ───────────────────────────────────
+      html += `<section class="proj-detail-body">`;
+      for (const section of p.sections) {
+        html += `
+          <div>
+            <h2 class="proj-detail-section-title" style="color:var(--accent);">${section.title}</h2>
+            ${section.paragraphs.map(par => `<p class="proj-detail-text">${par}</p>`).join('')}
+          </div>
+        `;
+      }
+      html += `</section>`;
+
+      content.innerHTML = html;
+
+      // ── Carrusel JS (solo si hay múltiples imágenes) ─────────
+      if (p.images && p.images.length > 1) {
+        const AUTOPLAY_MS = 4000;
+        const track   = document.getElementById('carouselTrack');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const counter = document.getElementById('carouselCounter');
+        const dotsEl  = document.getElementById('carouselDots');
+        const carousel = document.getElementById('carousel');
+        const total   = p.images.length;
+        let current   = 0;
+        let timer     = null;
+
+        p.images.forEach((_, i) => {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Ir a imagen ' + (i + 1));
+          dot.addEventListener('click', () => { goTo(i); resetTimer(); });
+          dotsEl.appendChild(dot);
+        });
+
+        function goTo(index) {
+          current = (index + total) % total;
+          track.style.transform = 'translateX(-' + (100 * current) + '%)';
+          counter.textContent = (current + 1) + ' / ' + total;
+          dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === current);
+          });
+        }
+
+        function next() { goTo(current + 1); }
+        function prev() { goTo(current - 1); }
+
+        btnNext.addEventListener('click', () => { next(); resetTimer(); });
+        btnPrev.addEventListener('click', () => { prev(); resetTimer(); });
+
+        function startTimer() { timer = setInterval(next, AUTOPLAY_MS); }
+        function resetTimer() { clearInterval(timer); startTimer(); }
+
+        carousel.addEventListener('mouseenter', () => clearInterval(timer));
+        carousel.addEventListener('mouseleave', startTimer);
+
+        let startX = 0;
+        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; clearInterval(timer); }, { passive: true });
+        track.addEventListener('touchend', e => {
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+          startTimer();
+        });
+
+        document.addEventListener('keydown', e => {
+          if (e.key === 'ArrowLeft')  { prev(); resetTimer(); }
+          if (e.key === 'ArrowRight') { next(); resetTimer(); }
+        });
+
+        goTo(0);
+        startTimer();
+      }
+    })();
+  </script>
+</body>
+</html>

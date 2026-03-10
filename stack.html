@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stack | Manuel Coria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" type="image/svg+xml" href="img/black-tie-brands-solid-full.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ─── Hero stack ─────────────────────────────────── */
+    .stack-hero {
+      padding-bottom: 0;
+    }
+
+    .stack-hero .subpage-title {
+      margin-bottom: 10px;
+    }
+
+    .stack-subtitle {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 64px;
+    }
+
+    /* ─── Grupos de tecnologías ──────────────────────── */
+    .stack-groups {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .stack-group {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .stack-group.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .group-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .group-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .group-level {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 2px 8px;
+      border-radius: 1px;
+    }
+
+    /* ─── Grid de cards ──────────────────────────────── */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .tech-card {
+      position: relative;
+      border: 1px solid var(--border);
+      background: rgba(14, 14, 14, 0.7);
+      padding: 22px 20px;
+      cursor: default;
+      overflow: hidden;
+      transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    }
+
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(230, 57, 70, 0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .tech-card:hover {
+      border-color: rgba(230, 57, 70, 0.45);
+      transform: translateY(-3px);
+      background: rgba(20, 20, 20, 0.9);
+    }
+
+    .tech-card:hover::before {
+      opacity: 1;
+    }
+
+    .tech-name {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      margin-bottom: 8px;
+      transition: color 0.25s ease;
+    }
+
+    .tech-card:hover .tech-name {
+      color: #fff;
+    }
+
+    .tech-desc {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      transition: color 0.25s ease;
+    }
+
+    .tech-card:hover .tech-desc {
+      color: var(--text-body);
+    }
+
+    /* Barra de nivel en la parte inferior de la card */
+    .tech-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      width: 0;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+    }
+
+    .stack-group.visible .tech-bar {
+      width: var(--bar-width, 0%);
+    }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 680px) {
+      .tech-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .tech-card {
+        padding: 16px 14px;
+      }
+
+      .tech-name {
+        font-size: 12px;
+      }
+
+      .tech-desc {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body class="page-sub">
+
+  <div class="custom-cursor" id="cursor" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <main class="subpage-shell stack-hero">
+
+    <a href="index.html" class="back-home">← Volver al inicio</a>
+
+    <h1 class="subpage-title">Mi stack.</h1>
+    <p class="stack-subtitle">Herramientas que uso · Tecnologías que domino</p>
+
+    <div class="stack-groups">
+
+      <!-- AVANZADO -->
+      <div class="stack-group">
+        <div class="group-header">
+          <span class="group-title">Backend</span>
+          <span class="group-level">Avanzado</span>
+        </div>
+        <div class="tech-grid">
+
+          <div class="tech-card">
+            <div class="tech-name">PHP</div>
+            <div class="tech-desc">El lenguaje con el que empezó todo. Lo uso a bajo nivel y dentro de frameworks.</div>
+            <div class="tech-bar" style="--bar-width: 92%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Laravel</div>
+            <div class="tech-desc">Framework principal para proyectos de producción. Eloquent, Artisan, Blade.</div>
+            <div class="tech-bar" style="--bar-width: 90%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Node.js</div>
+            <div class="tech-desc">Backend en JavaScript. Ideal para APIs, bots y servicios en tiempo real.</div>
+            <div class="tech-bar" style="--bar-width: 85%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">MySQL / SQL</div>
+            <div class="tech-desc">Diseño de esquemas, consultas complejas, joins y optimización de queries.</div>
+            <div class="tech-bar" style="--bar-width: 88%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Git</div>
+            <div class="tech-desc">Control de versiones, branching, merge y flujos de trabajo colaborativo.</div>
+            <div class="tech-bar" style="--bar-width: 90%"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FRONTEND AVANZADO -->
+      <div class="stack-group">
+        <div class="group-header">
+          <span class="group-title">Frontend</span>
+          <span class="group-level">Avanzado</span>
+        </div>
+        <div class="tech-grid">
+
+          <div class="tech-card">
+            <div class="tech-name">JavaScript</div>
+            <div class="tech-desc">ES6+, DOM, async/await, eventos, módulos. La base de todo lo interactivo.</div>
+            <div class="tech-bar" style="--bar-width: 90%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">React</div>
+            <div class="tech-desc">Componentes, hooks, estado global, y consumo de APIs REST en aplicaciones SPA.</div>
+            <div class="tech-bar" style="--bar-width: 87%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">HTML5</div>
+            <div class="tech-desc">Semántica, accesibilidad y estructura sólida para cualquier tipo de proyecto.</div>
+            <div class="tech-bar" style="--bar-width: 95%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">CSS3</div>
+            <div class="tech-desc">Layouts con Grid y Flexbox, animaciones, variables y diseño responsive.</div>
+            <div class="tech-bar" style="--bar-width: 92%"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- INTERMEDIO -->
+      <div class="stack-group">
+        <div class="group-header">
+          <span class="group-title">Herramientas &amp; Frameworks</span>
+          <span class="group-level">Intermedio</span>
+        </div>
+        <div class="tech-grid">
+
+          <div class="tech-card">
+            <div class="tech-name">Next.js</div>
+            <div class="tech-desc">SSR y SSG con React. Para proyectos que necesitan SEO y rendimiento real.</div>
+            <div class="tech-bar" style="--bar-width: 70%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Express</div>
+            <div class="tech-desc">APIs REST minimalistas en Node. Middleware, rutas y manejo de errores.</div>
+            <div class="tech-bar" style="--bar-width: 72%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">MongoDB</div>
+            <div class="tech-desc">Base de datos documental. Esquemas flexibles con Mongoose y aggregations.</div>
+            <div class="tech-bar" style="--bar-width: 68%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Tailwind CSS</div>
+            <div class="tech-desc">Utilidades CSS para prototipar y construir interfaces rápido sin salir del HTML.</div>
+            <div class="tech-bar" style="--bar-width: 75%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Python</div>
+            <div class="tech-desc">Scripts de automatización, procesamiento de datos y pequeñas utilidades.</div>
+            <div class="tech-bar" style="--bar-width: 65%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">jQuery</div>
+            <div class="tech-desc">Lo usé en proyectos legacy. Sé cuándo usarlo y, más importante, cuándo no.</div>
+            <div class="tech-bar" style="--bar-width: 80%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Spring Boot</div>
+            <div class="tech-desc">APIs REST y aplicaciones empresariales en el ecosistema Java.</div>
+            <div class="tech-bar" style="--bar-width: 60%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Java</div>
+            <div class="tech-desc">POO avanzada, patrones de diseño y estructuras de datos en la universidad.</div>
+            <div class="tech-bar" style="--bar-width: 62%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Slim</div>
+            <div class="tech-desc">Microframework PHP para APIs livianas. Usado en proyectos de clientes reales.</div>
+            <div class="tech-bar" style="--bar-width: 65%"></div>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-name">Shadcn/ui</div>
+            <div class="tech-desc">Componentes accesibles y personalizables sobre Radix UI para proyectos React.</div>
+            <div class="tech-bar" style="--bar-width: 68%"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Scroll reveal para los grupos de stack
+    const groups = document.querySelectorAll('.stack-group');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger entre grupos
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    groups.forEach(g => observer.observe(g));
+  </script>
+</body>
+</html>
