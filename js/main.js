@@ -6,6 +6,7 @@
      2. Clock       — hora en tiempo real (UTC-3 La Plata)
      3. ScrollReveal — fade-in + slide-up con IntersectionObserver
      4. Dynamic title — título de pestaña dinámico
+    5. GitHub last commit — fecha del último commit público
    ───────────────────────────────────────────────────────── */
 
 'use strict';
@@ -56,8 +57,8 @@
 
   const phrases = [
     'Del problema\na la solución.',
-    'Construyo ideas\nen código.',
-    'Soluciones concretas,\ncódigo limpio.',
+    'De tu idea\nal código.',
+    'Hagamoslo realidad :)',
   ];
 
   let phraseIndex = 0;
@@ -160,7 +161,7 @@
   const titles = [
     '✦ Manuel Coria ✦',
     '✦ Open to Work ✦',
-    '✦ Construyo ideas en código ✦',
+    '✦ De tu idea al CÓDIGO✦',
   ];
 
   const hiddenTitle = 'Te extraño :(';
@@ -196,4 +197,60 @@
 
   // Arrancar al cargar
   startRotation();
+})();
+
+
+/* ══════════════════════════════════════════════════════════
+   5. GITHUB LAST COMMIT
+   Muestra fecha y hora del último commit público del usuario.
+   ══════════════════════════════════════════════════════════ */
+(function initGithubLastCommit() {
+  const el = document.getElementById('commit');
+  if (!el) return;
+
+  const GITHUB_USERNAME = 'coriawork';
+  const eventsUrl = `https://api.github.com/users/${GITHUB_USERNAME}/events/public`;
+
+  function formatDate(dateString) {
+    const d = new Date(dateString);
+    return new Intl.DateTimeFormat('es-AR', {
+      day: '2-digit',
+      month: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).format(d);
+  }
+
+  async function loadLastCommit() {
+    try {
+      const response = await fetch(eventsUrl, {
+        headers: {
+          Accept: 'application/vnd.github+json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`GitHub API status ${response.status}`);
+      }
+
+      const events = await response.json();
+      const lastPush = events.find((event) => event.type === 'PushEvent');
+
+      if (!lastPush || !lastPush.created_at) {
+        el.textContent = 'Sin datos';
+        return;
+      }
+
+      el.textContent = formatDate(lastPush.created_at);
+
+      const repoName = lastPush.repo?.name || 'repositorio';
+      el.title = `Ultimo push en ${repoName}`;
+    } catch (error) {
+      el.textContent = 'No disponible';
+      console.error('No se pudo obtener el ultimo commit publico:', error);
+    }
+  }
+
+  loadLastCommit();
 })();
