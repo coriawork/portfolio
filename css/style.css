@@ -518,7 +518,6 @@ body.page-sub {
   font-size: clamp(34px, 5.4vw, 64px);
   line-height: 1.05;
   letter-spacing: -1px;
-  margin-bottom: 22px;
 }
 
 .subpage-card {
@@ -561,7 +560,6 @@ body.page-sub {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-dim);
-  margin-bottom: 8px;
 }
 
 .projects-list {
@@ -1013,4 +1011,47 @@ body.page-sub {
 
     }
 
+}
+
+.project{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+}
+.project .texto{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+}
+.project .link{
+    color: var(--accent);
+    text-decoration: underline;
+}
+.project .texto .titulo{
+    font-size: 30px;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    margin-left: -5vw;
+    color: var(--accent);
+}
+.project img{
+    height: 30vw;
+    filter:
+        drop-shadow(2px 0 0 #f0f0f0)
+        drop-shadow(-2px 0 0 #f0f0f0) 
+        drop-shadow(0 2px 0 #f0f0f0) 
+        drop-shadow(0 -2px 0 #f0f0f0);
+}
+.project .desc{
+    width: 100%;
+}
+.badged-list{
+    display: flex;
+    gap:5px;
+}
+.badged{
+    padding: 2px;
+    background-color: #e63946;
 }

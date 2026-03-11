@@ -57,7 +57,7 @@
 
   const phrases = [
     'Del problema\n a la solución.',
-    'De tu idea\n al código.',
+    'De tu idea\n al negocio.',
     'Hagamoslo\n realidad :)',
   ];
 

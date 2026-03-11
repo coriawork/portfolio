@@ -52,7 +52,6 @@
       // ── Header ──────────────────────────────────────────────
       let html = `
         <header class="proj-detail-header">
-          <span class="proj-index" style="color:var(--accent);">${p.index}</span>
           <h1 class="proj-detail-title">${p.title.join('<br>')}</h1>
           <p class="proj-detail-lead">${p.lead}</p>
           <ul class="proj-tags proj-tags--detail" aria-label="Stack tecnico">
@@ -61,6 +60,17 @@
           ${p.badge ? `<span class="proj-badge proj-badge--detail">${p.badge}</span>` : ''}
         </header>
       `;
+            // ── Secciones de texto ───────────────────────────────────
+      html += `<section class="proj-detail-body">`;
+      for (const section of p.sections) {
+        html += `
+          <div>
+            <h2 class="proj-detail-section-title" style="color:var(--accent);">${section.title}</h2>
+            ${section.paragraphs.map(par => `<p class="proj-detail-text">${par}</p>`).join('')}
+          </div>
+        `;
+      }
+      html += `</section>`;
 
       // ── Imágenes / Carrusel ──────────────────────────────────
       if (p.images && p.images.length > 0) {
@@ -111,17 +121,7 @@
         `;
       }
 
-      // ── Secciones de texto ───────────────────────────────────
-      html += `<section class="proj-detail-body">`;
-      for (const section of p.sections) {
-        html += `
-          <div>
-            <h2 class="proj-detail-section-title" style="color:var(--accent);">${section.title}</h2>
-            ${section.paragraphs.map(par => `<p class="proj-detail-text">${par}</p>`).join('')}
-          </div>
-        `;
-      }
-      html += `</section>`;
+
 
       content.innerHTML = html;
 

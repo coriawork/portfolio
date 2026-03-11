@@ -1,7 +1,8 @@
 [
   {
     "id": "bot-whatsapp",
-    "index": "01",
+    "cardImg": "futbol.png",
+    "imgSize": "15vw",
     "title": ["Bot de WhatsApp", "Canchas de Fútbol"],
     "titleShort": "FUTBOT",
     "lead": "Automatización completa de reservas de canchas via WhatsApp con confirmación de turnos en tiempo real y panel de operadores.",
@@ -24,40 +25,43 @@
       }
     ]
   },
-  {
-    "id": "versionado-musical",
-    "index": "02",
-    "title": ["COLLAB"],
-    "titleShort": "COLLAB",
-    "lead": "Plataforma tipo Git para músicos: historial de versiones de composiciones y colaboración privada antes del lanzamiento.",
-    "badge": null,
-    "tags": ["Laravel", "PHP", "React", "MySQL", "Tailwind CSS"],
-    "images": [],
-    "sections": [
-      {
-        "title": "Descripción",
-        "paragraphs": [
-          "Plataforma de versionado para músicos, inspirada en el flujo de trabajo de Git, que permite gestionar y mantener el historial completo de cambios de composiciones musicales. Cada versión queda registrada con fecha, descripción de los cambios y archivos adjuntos.",
-          "Facilita la colaboración privada entre artistas, permitiendo invitar colaboradores al proyecto antes del lanzamiento público de la obra, con control de permisos por rol."
-        ]
-      },
-      {
-        "title": "Desafíos técnicos",
-        "paragraphs": [
-          "El principal desafío fue modelar el concepto de \"versión\" de forma genérica para soportar distintos formatos de archivo musical (MIDI, MP3, partituras PDF) y diseñar una interfaz que resultara intuitiva para músicos sin experiencia en herramientas de control de versiones."
-        ]
-      }
-    ]
-  },
+  
   {
     "id": "gestion-alquileres",
-    "index": "03",
+    "cardImg": "express.png",
+    "imgSize": null,
     "title": ["Sistema de Gestión", "de Alquileres"],
     "titleShort": "AlquilerExpress",
     "lead": "Aplicación web universitaria para gestión de inmuebles en alquiler. Calificación sobresaliente en la UNLP.",
     "badge": "Proyecto UNLP",
     "tags": ["PHP", "Laravel", "JavaScript", "MySQL", "HTML / CSS"],
-    "images": [],
+    "images": ["Alq1.png", "Alq2.png", "Alq3.png", "Alq4.png"],
+    "sections": [
+      {
+        "title": "Descripción",
+        "paragraphs": [
+          "Aplicación web desarrollada en el marco académico de la UNLP, obteniendo una calificación sobresaliente. Permite a propietarios publicar inmuebles en alquiler y gestionar contratos, mientras que los inquilinos pueden explorar y reservar propiedades.",
+          "Incluye módulo de búsqueda con filtros avanzados, perfiles de usuario diferenciados por rol (propietario / inquilino / administrador) y gestión completa de los estados del alquiler: disponible, reservado, en curso y finalizado."
+        ]
+      },
+      {
+        "title": "Desafíos técnicos",
+        "paragraphs": [
+          "La mayor complejidad estuvo en diseñar el modelo de datos para reflejar correctamente los estados del ciclo de vida de un alquiler y garantizar la consistencia entre las transiciones. También fue necesario implementar un sistema de notificaciones por correo para los eventos más relevantes del proceso."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fertilidad",
+    "cardImg": "express.png",
+    "imgSize": null,
+    "title": ["Sistema de Gestión", "de clínica de fertilidad"],
+    "titleShort": "Clinica de Fertilidad",
+    "lead": "Aplicacion para el manejo de una clínica de fertilidad, tanto para clientes como para doctores, se manejan las reservas, consutlas y seguimiento de los tratamientos.",
+    "badge": "Proyecto UNLP",
+    "tags": ["JavaScript", "MySQL", "HTML / CSS", "React", "Tailwind"],
+    "images": ["fertil1.png", "fertil2.png", "fertil3.png", "fertil4.png", "fertil5.png", "fertil6.png", "fertil7.png", "fertil8.png", "fertil9.png", "fertil10.png", "fertil11.png", "fertil12.png", "fertil13.png", "fertil14.png"],
     "sections": [
       {
         "title": "Descripción",
@@ -76,13 +80,14 @@
   },
   {
     "id": "sitios-historicos",
-    "index": "04",
+    "cardImg": null,
+    "imgSize": null,
     "title": ["Manejo de Sitios", "Históricos"],
     "titleShort": "Manejo de Sitios Históricos",
     "lead": "Sitio web para explorar la ubicación y estado de los sitios históricos de una ciudad.",
     "badge": "Proyecto UNLP",
-    "tags": ["Python", "Flask", "React", "Tailwind"],
-    "images": [],
+    "tags": ["Python", "Flask","React", "Tailwind"],
+    "images": ["hist1.png", "hist2.png", "hist3.png","hist4.png"],
     "sections": [
       {
         "title": "Descripción",
@@ -94,13 +99,14 @@
   },
   {
     "id": "extension-chrome",
-    "index": "05",
+    "cardImg": null,
+    "imgSize": null,
     "title": ["Extensión Chrome", "Club River Plate"],
     "titleShort": "Extensión Chrome — Club River Plate",
     "lead": "Extensión para Google Chrome que muestra información en tiempo real sobre los próximos partidos consumiendo APIs externas.",
     "badge": null,
     "tags": ["JavaScript", "HTML / CSS"],
-    "images": [],
+    "images": ["extension.png"],
     "sections": [
       {
         "title": "Descripción",
@@ -118,8 +124,46 @@
     ]
   },
   {
+    "id": "versionado-musical",
+    "cardImg": "collab.png",
+    "imgSize": null,
+    "title": [
+        "COLLAB"
+    ],
+    "titleShort": "COLLAB",
+    "lead": "Plataforma tipo Git para músicos: historial de versiones de composiciones y colaboración privada antes del lanzamiento.",
+    "badge": null,
+    "tags": [
+        "Laravel",
+        "PHP",
+        "React",
+        "MySQL",
+        "Tailwind CSS"
+    ],
+    "images": [
+        "collab1.png",
+        "collab2.png"
+    ],
+    "sections": [
+        {
+            "title": "Descripción",
+            "paragraphs": [
+                "Plataforma de versionado para músicos, inspirada en el flujo de trabajo de Git, que permite gestionar y mantener el historial completo de cambios de composiciones musicales. Cada versión queda registrada con fecha, descripción de los cambios y archivos adjuntos.",
+                "Facilita la colaboración privada entre artistas, permitiendo invitar colaboradores al proyecto antes del lanzamiento público de la obra, con control de permisos por rol."
+            ]
+        },
+        {
+            "title": "Desafíos técnicos",
+            "paragraphs": [
+                "El principal desafío Fue encontrar una forma eficiente de almacenar el historial de versiones sin duplicar archivos, implementando un sistema de referencias. También fue necesario diseñar una interfaz intuitiva para navegar por las distintas versiones y comparar cambios entre ellas."
+            ]
+        }
+    ]
+},
+  {
     "id": "gestion-textil",
-    "index": "06",
+    "cardImg": null,
+    "imgSize": null,
     "title": ["Sistema de Gestión", "para Negocio Textil"],
     "titleShort": "Sistema de Gestión Textil",
     "lead": "Sistema a medida que automatiza el cálculo de costos de producción y precio de venta para un negocio de confección.",
@@ -144,7 +188,8 @@
   },
   {
     "id": "comedor-comunitario",
-    "index": "07",
+    "cardImg": null,
+    "imgSize": null,
     "title": ["Web de Pedidos", "Comedor Comunitario"],
     "titleShort": "Web de Pedidos — Comedor Comunitario",
     "lead": "Sitio web para explorar el menú, realizar pedidos online y coordinar el retiro en el local.",
